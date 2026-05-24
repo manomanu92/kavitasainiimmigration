@@ -61,9 +61,12 @@ export function getCleanPageContent(pageKey, rawData) {
     // Filter by strict ignore set
     if (IGNORED_TEXTS.has(cleanText)) continue;
 
+    // Filter any email address
+    if (/\S+@\S+\.\S+/.test(cleanText)) continue;
+
     // Filter by pattern
     const lowerText = cleanText.toLowerCase();
-    if (lowerText.includes('sector 34a, chandigarh') || 
+    if (lowerText.includes('sector 34a, chandigarh') ||
         lowerText.includes('giani zail singh nagar, ropar') || 
         lowerText.includes('new nalagarh') ||
         lowerText.includes('+91 98162') ||
