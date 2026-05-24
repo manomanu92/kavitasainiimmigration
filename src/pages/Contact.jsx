@@ -157,8 +157,8 @@ export default function Contact() {
       {/* Google Maps Embed */}
       <div style={styles.mapSection}>
         <iframe
-          title="Kavita Saini Immigration inc."
-          src="https://maps.google.com/maps?q=43.5773264,-79.4943477&t=m&z=15&ie=UTF8&iwloc=near&output=embed"
+          title="Mississauga, ON, Canada"
+          src="https://maps.google.com/maps?q=43.5852972,-79.6449838&t=m&z=15&ie=UTF8&iwloc=near&output=embed"
           width="100%"
           height="450"
           style={{ border: 0, display: 'block' }}
