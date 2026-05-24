@@ -111,43 +111,22 @@ export default function Contact() {
         <div className="container">
           <div style={styles.officesGrid}>
 
-            {/* Chandigarh */}
-            <div style={styles.officeItem}>
-              <p style={styles.officeText}>
-                Chandigarh Office – SCO 364-365-366, SECOND FLOOR, Near NARAYANA IIT Coaching Centre, Sector 34A, Chandigarh, 160022.
-              </p>
-              <div style={styles.officeContact}>
-                <a href="tel:+918283810356" style={styles.contactLink}>+91 82838 10356</a>
-                <a href="tel:+917347677716" style={styles.contactLink}>+91 73476 77716</a>
-                <a href="tel:+14372323647"  style={styles.contactLink}>+1 (437) 232 3647</a>
-                <a href="mailto:kavitasainiimmigration@gmail.com" style={styles.emailLink}>kavitasainiimmigration@gmail.com</a>
-              </div>
-            </div>
-
             {/* Ropar */}
             <div style={styles.officeItem}>
               <p style={styles.officeText}>
                 SCF 10, GIANI ZAIL SINGH NAGAR, ROPAR, Punjab
               </p>
               <div style={styles.officeContact}>
-                <a href="tel:+918283810356" style={styles.contactLink}>+91 82838 10356</a>
-                <a href="tel:+917347677716" style={styles.contactLink}>+91 73476 77716</a>
+                <a href="tel:+919816221774" style={styles.contactLink}>+91 98162 21774</a>
                 <a href="tel:+14372323647"  style={styles.contactLink}>+1 (437) 232 3647</a>
-                <a href="mailto:kavitasainiimmigration@gmail.com" style={styles.emailLink}>kavitasainiimmigration@gmail.com</a>
               </div>
             </div>
 
-            {/* Nalagarh */}
+            {/* Mississauga */}
             <div style={styles.officeItem}>
               <p style={styles.officeText}>
-                SCO 32-33, Phase 1, New Nalagarh, Himachal Pradesh
+                Mississauga, Toronto
               </p>
-              <div style={styles.officeContact}>
-                <a href="tel:+918283810356" style={styles.contactLink}>+91 82838 10356</a>
-                <a href="tel:+917347677716" style={styles.contactLink}>+91 73476 77716</a>
-                <a href="tel:+14372323647"  style={styles.contactLink}>+1 (437) 232 3647</a>
-                <a href="mailto:kavitasainiimmigration@gmail.com" style={styles.emailLink}>kavitasainiimmigration@gmail.com</a>
-              </div>
             </div>
 
           </div>

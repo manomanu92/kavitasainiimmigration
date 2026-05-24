@@ -110,10 +110,10 @@ export default function Footer() {
         <div style={styles.contactCol}>
           <h4 style={styles.colTitle}>Contact Us</h4>
           <div style={styles.contactItems}>
-            <p style={styles.contactText}>Chandigarh Office -SCO 364-365-366, SECOND FLOOR, Near NARAYANA IIT Coaching Centre, Sector 34A, Chandigarh, 160022.</p>
             <p style={styles.contactText}>SCF 10, GIANI ZAIL SINGH NAGAR, ROPAR, Punjab</p>
-            <p style={styles.contactText}>SCO 32-33, Phase 1, New Nalagarh, Himachal Pradesh</p>
+            <p style={styles.contactText}>Mississauga, Toronto</p>
             <p style={{ ...styles.contactText, marginTop: '8px' }}>+91 98162 21774</p>
+            <p style={styles.contactText}>+1 (437) 232 3647</p>
           </div>
 
           {/* Email Subscription Box */}
