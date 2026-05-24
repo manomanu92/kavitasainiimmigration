@@ -251,7 +251,7 @@ export default function Home({ onOpenCallback }) {
       </section>
 
       {/* Overlapping USP Section */}
-      <div style={styles.uspContainer} className="container">
+      <div style={styles.uspContainer} className="container usp-overlap-container">
         <div className="usp-grid">
           {[
             { title: <>Confirmed<br />admission</>, link: "/study-visa" },
@@ -276,7 +276,7 @@ export default function Home({ onOpenCallback }) {
 
       {/* Intro Section */}
       <section className="section section-bg-alt" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
-        <div className="container" style={styles.introGrid}>
+        <div className="container intro-section-grid" style={styles.introGrid}>
           <div style={styles.introLeft}>
             <h2 style={styles.title}>Your Trusted Partner for Canadian Immigration Success</h2>
             <p style={styles.desc}>
@@ -354,7 +354,7 @@ export default function Home({ onOpenCallback }) {
           <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '36px' }}>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000' }}>Pillars of Success</h2>
           </div>
-          <div className="stats-grid-exact" style={{ gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '900px', margin: '0 auto' }}>
+          <div className="stats-grid-exact pillars-grid" style={{ maxWidth: '900px', margin: '0 auto' }}>
             {pillarsStats.map((stat, idx) => (
               <div key={idx} className="card stat-card-exact">
                 <h2 className="stat-card-value-exact">
@@ -366,7 +366,7 @@ export default function Home({ onOpenCallback }) {
           </div>
 
           {/* Ropar Training Centre — inline below stats */}
-          <div style={{
+          <div className="ropar-card" style={{
             marginTop: '40px',
             display: 'flex',
             alignItems: 'center',
@@ -382,9 +382,10 @@ export default function Home({ onOpenCallback }) {
             <img
               src={imgUrl("/images/bg2-650x650-1.jpg")}
               alt="Ropar Training Centre"
+              className="ropar-card-img"
               style={{ width: '220px', minHeight: '160px', objectFit: 'cover', flexShrink: 0 }}
             />
-            <div style={{ padding: '24px 28px 24px 0' }}>
+            <div className="ropar-card-text" style={{ padding: '24px 28px 24px 0' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '1.5px' }}>Training Centre</span>
               <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#000', margin: '6px 0 10px', fontFamily: 'var(--font-title)' }}>Ropar, Punjab</h3>
               <p style={{ fontSize: '0.92rem', color: '#594d66', lineHeight: '1.6', margin: 0 }}>
@@ -1157,9 +1158,43 @@ const styles = {
 
 const homeStyles = `
   @media (max-width: 1024px) {
-    div[style*="display: grid; grid-template-columns: 1.15fr 0.85fr"] {
+    .intro-section-grid {
       grid-template-columns: 1fr !important;
       gap: 40px !important;
+    }
+  }
+  @media (max-width: 768px) {
+    .intro-section-grid {
+      gap: 28px !important;
+    }
+
+    /* Fix: USP cards no longer cover hero on mobile */
+    .usp-overlap-container {
+      margin-top: 0 !important;
+    }
+  }
+
+  /* Fix: Pillars numbers — responsive columns */
+  .pillars-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  @media (max-width: 768px) {
+    .pillars-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Fix: Ropar card stacks on mobile */
+    .ropar-card {
+      flex-direction: column !important;
+      gap: 0 !important;
+    }
+    .ropar-card-img {
+      width: 100% !important;
+      height: 180px !important;
+      min-height: unset !important;
+    }
+    .ropar-card-text {
+      padding: 20px 20px !important;
     }
   }
 `;
