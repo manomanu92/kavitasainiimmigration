@@ -2,6 +2,7 @@ import React from 'react';
 import { getCleanPageContent } from '../utils/contentParser';
 import rawSiteData from '../data/scraped_site_content.json';
 import { CheckCircle2 } from 'lucide-react';
+import imgUrl from '../utils/imgUrl';
 
 export default function GenericPage({ pageKey }) {
   const { title, sections } = getCleanPageContent(pageKey, rawSiteData);
@@ -71,27 +72,27 @@ export default function GenericPage({ pageKey }) {
   }
 
   const bannerImages = {
-    about: '/images/Artboard-7.jpg',
-    ielts: '/images/Artboard-8.jpg',
-    spoken_english: '/images/Artboard-9.jpg',
-    career_counselling: '/images/Artboard-10.jpg',
-    corporate_soft_skills: '/images/Artboard-10.jpg',
-    spouse_visa: '/images/Artboard-10.jpg',
-    ventures: '/images/19.jpg',
-    study_visa: '/images/Artboard-3.jpg',
-    canada_study_visa: '/images/Artboard-3.jpg',
-    usa_study_visa: '/images/11.jpg',
-    uk_study_visa: '/images/Artboard-2.jpg',
-    australia_study_visa: '/images/12.jpg',
-    new_zealand_study_visa: '/images/13.jpg',
-    tourist_visa: '/images/16.jpg',
-    canada_tourist_visa: '/images/16.jpg',
-    usa_tourist_visa: '/images/16.jpg',
-    uk_tourist_visa: '/images/14.jpg',
-    australia_tourist_visa: '/images/14.jpg',
+    about: imgUrl('/images/Artboard-7.jpg'),
+    ielts: imgUrl('/images/Artboard-8.jpg'),
+    spoken_english: imgUrl('/images/Artboard-9.jpg'),
+    career_counselling: imgUrl('/images/Artboard-10.jpg'),
+    corporate_soft_skills: imgUrl('/images/Artboard-10.jpg'),
+    spouse_visa: imgUrl('/images/Artboard-10.jpg'),
+    ventures: imgUrl('/images/19.jpg'),
+    study_visa: imgUrl('/images/Artboard-3.jpg'),
+    canada_study_visa: imgUrl('/images/Artboard-3.jpg'),
+    usa_study_visa: imgUrl('/images/11.jpg'),
+    uk_study_visa: imgUrl('/images/Artboard-2.jpg'),
+    australia_study_visa: imgUrl('/images/12.jpg'),
+    new_zealand_study_visa: imgUrl('/images/13.jpg'),
+    tourist_visa: imgUrl('/images/16.jpg'),
+    canada_tourist_visa: imgUrl('/images/16.jpg'),
+    usa_tourist_visa: imgUrl('/images/16.jpg'),
+    uk_tourist_visa: imgUrl('/images/14.jpg'),
+    australia_tourist_visa: imgUrl('/images/14.jpg'),
   };
 
-  const bgImage = bannerImages[pageKey] || '/images/Artboard-3.jpg';
+  const bgImage = bannerImages[pageKey] || imgUrl('/images/Artboard-3.jpg');
 
   return (
     <div style={{

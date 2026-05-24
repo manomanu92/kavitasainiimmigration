@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { submitForm } from '../utils/submitForm';
+import imgUrl from '../utils/imgUrl';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ export default function Contact() {
 
       {/* Hero */}
       <div style={styles.hero}>
-        <img src="/images/21.jpg" alt="Contact Kavita Saini Immigration" style={styles.heroImg} />
+        <img src={imgUrl('/images/21.jpg')} alt="Contact Kavita Saini Immigration" style={styles.heroImg} />
       </div>
 
       {/* Form Section */}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Star, Users, Award, CheckCircle, ArrowRight, MapPin, Phone } from 'lucide-react';
+import imgUrl from '../utils/imgUrl';
 
 /* ─── Inject responsive CSS once ─── */
 const aboutCSS = `
@@ -220,7 +221,7 @@ export default function About() {
       {/* ── 1. Banner ── */}
       <div style={{ width: '100%', overflow: 'hidden', backgroundColor: '#f7f5fa' }}>
         <img
-          src="/images/Artboard-7.jpg"
+          src={imgUrl('/images/Artboard-7.jpg')}
           alt="Kavita Saini Immigration — success stories collage"
           style={{ width: '100%', height: 'auto', display: 'block' }}
         />
@@ -281,7 +282,7 @@ export default function About() {
                     style={{ position: 'relative', paddingBottom: '56.25%', backgroundColor: '#000', cursor: 'pointer' }}
                   >
                     <img
-                      src="/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg"
+                      src={imgUrl('/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg')}
                       alt="Watch our story on YouTube"
                       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}
                     />
@@ -343,7 +344,7 @@ export default function About() {
             {/* Left — image */}
             <div style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: '0 20px 60px rgba(103,35,154,0.14)', border: '1px solid rgba(103,35,154,0.07)' }}>
               <img
-                src="/images/kavita-saini-slide.png"
+                src={imgUrl('/images/kavita-saini-slide.png')}
                 alt="Kavita Saini — Founder, Kavita Saini Immigration Inc."
                 style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
               />

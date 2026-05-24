@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, ShieldAlert, Send } from 'lucide-react';
+import imgUrl from '../utils/imgUrl';
 
 const Facebook = ({ size = 24, ...props }) => (
   <svg
@@ -64,7 +65,7 @@ export default function Footer() {
         <div style={styles.brandCol}>
           <div style={styles.logoWrap}>
             <img
-              src="/images/kavita-saini-logo.jpeg"
+              src={imgUrl("/images/kavita-saini-logo.jpeg")}
               alt="Kavita Saini Immigration"
               style={{ height: '60px', width: 'auto', objectFit: 'contain', background: 'white', borderRadius: '6px', padding: '4px 8px' }}
             />

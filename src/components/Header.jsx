@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone, Mail, Globe } from 'lucide-react';
+import imgUrl from '../utils/imgUrl';
 
 const Facebook = ({ size = 16, ...props }) => (
   <svg
@@ -136,7 +137,7 @@ export default function Header({ onOpenCallback }) {
           {/* Logo */}
           <Link to="/" style={styles.logoWrap}>
             <img
-              src="/images/kavita-saini-logo.jpeg"
+              src={imgUrl("/images/kavita-saini-logo.jpeg")}
               alt="Kavita Saini Immigration"
               style={{ height: 'auto', width: '200px', objectFit: 'contain' }}
             />
@@ -216,7 +217,7 @@ export default function Header({ onOpenCallback }) {
               style={{ display: 'flex', alignItems: 'center' }}
             >
               <img 
-                src="/images/a3f4057ea4700428c68e982053d61e0fa105e8b758fa700b7bac47e31fac957a-qoat7s92awoujz19jrgu24noor8s3fvujaf6wmwwxs.png" 
+                src={imgUrl("/images/a3f4057ea4700428c68e982053d61e0fa105e8b758fa700b7bac47e31fac957a-qoat7s92awoujz19jrgu24noor8s3fvujaf6wmwwxs.png")} 
                 alt="ICEF Trained Agent Badge" 
                 className="icef-badge-img"
                 style={{ height: '65px', width: 'auto', transition: 'transform 0.2s' }}

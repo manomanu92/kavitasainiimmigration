@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Award, CheckCircle, Shield, Heart, GraduationCap, MapPin, 
+import imgUrl from '../utils/imgUrl';
+import {
+  Award, CheckCircle, Shield, Heart, GraduationCap, MapPin,
   Users, Landmark, ChevronRight, ChevronLeft, Video, Calendar, ArrowRight 
 } from 'lucide-react';
 
@@ -142,19 +143,19 @@ export default function Home({ onOpenCallback }) {
     {
       title: "15 Years of Global Expertise",
       desc: "Trust your career with pioneers of study visa counseling and language instruction in North India.",
-      image: "/images/kavita-saini-slide.png",
+      image: imgUrl("/images/kavita-saini-slide.png"),
       accent: "Highest Success Rate"
     },
     {
       title: "Services in Canada",
       desc: "Comprehensive post-arrival transition support including housing, registration, and social networking.",
-      image: "/images/services-in-Canada.jpg",
+      image: imgUrl("/images/services-in-Canada.jpg"),
       accent: "Seamless Integration"
     },
     {
       title: "Services in India",
       desc: "Premium classroom coaching and expert visa guidance available across our locations in India.",
-      image: "/images/services-in-india.jpg",
+      image: imgUrl("/images/services-in-india.jpg"),
       accent: "In-Country Counselors"
     }
   ];
@@ -173,21 +174,21 @@ export default function Home({ onOpenCallback }) {
       desc: "Office is located in center of Chandigarh Tricity. This office is a full service Study Visa and Work Permit office which also provides facilities of Tourist Visa.",
       address: "Sector 34A, Chandigarh",
       tag: "Tricity Hub",
-      image: "/images/bg2-650x650-2.jpg"
+      image: imgUrl("/images/bg2-650x650-2.jpg")
     },
     {
       city: "Ropar",
       desc: "Looking at the extensive requirements from IELTS aspiring students, we started IELTS and Spoken English Training institute in Ropar. This office also provides facilities of Study Visa, Tourist Visa and Work Permit.",
       address: "Giani Zail Singh Nagar, Ropar, Punjab",
       tag: "Training Center",
-      image: "/images/bg2-650x650-1.jpg"
+      image: imgUrl("/images/bg2-650x650-1.jpg")
     },
     {
       city: "New Nalagarh",
       desc: "This Office cum training institute provides facilities of Study Visa, Tourist Visa, Work Permit, IELTS and Spoken English.",
       address: "Phase 1, New Nalagarh, HP",
       tag: "Counseling Terminal",
-      image: "/images/nalagra.jpg"
+      image: imgUrl("/images/nalagra.jpg")
     }
   ];
 
@@ -262,7 +263,7 @@ export default function Home({ onOpenCallback }) {
             <Link key={idx} to={card.link} className="usp-card-exact">
               <div style={styles.uspIconWrap}>
                 <img 
-                  src="/images/funfacts-icon-2.png" 
+                  src={imgUrl("/images/funfacts-icon-2.png")} 
                   alt="" 
                   style={{ width: '54px', height: '50px', objectFit: 'contain' }} 
                 />
@@ -324,7 +325,7 @@ export default function Home({ onOpenCallback }) {
               ) : (
                 <div style={styles.videoThumbnailContainer} onClick={() => setIsVideoPlaying(true)}>
                   <img 
-                    src="/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg" 
+                    src={imgUrl("/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg")} 
                     alt="YouTube Video Thumbnail" 
                     style={styles.introVideoThumbnail} 
                   />
@@ -379,7 +380,7 @@ export default function Home({ onOpenCallback }) {
             boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
           }}>
             <img
-              src="/images/bg2-650x650-1.jpg"
+              src={imgUrl("/images/bg2-650x650-1.jpg")}
               alt="Ropar Training Centre"
               style={{ width: '220px', minHeight: '160px', objectFit: 'cover', flexShrink: 0 }}
             />
@@ -618,18 +619,18 @@ export default function Home({ onOpenCallback }) {
           </h2>
           <div className="partners-logo-grid">
             {[
-              { name: "RMIT University", path: "/images/rmit_2ec52709f2c89eec6f94fd4637a4bf8a.jpg" },
-              { name: "Humber College", path: "/images/humber-1_e9a5115c9557af8be66ece65617d9341.jpg" },
-              { name: "Fanshawe College", path: "/images/fanshawe_8f903f5cfe4bd72d3eb6b43fcb2dea88.jpg" },
-              { name: "St. Clair College", path: "/images/stclair-1_223f348bbc2b391d2f281e3f465043f2.jpg" },
-              { name: "Cambrian College", path: "/images/cambrian_3deb11bb70d311c2b5780092d35e279a.jpg" },
-              { name: "ATMC", path: "/images/atmc_0bf34ac4c4e3ab5be536563ccbe4400a.jpg" },
-              { name: "Charles Sturt University", path: "/images/charles_cf25411c1d2b36e17ca3440e9f595af9.jpg" },
-              { name: "Charles Darwin University", path: "/images/charlesdarwin-1.jpg" },
-              { name: "CQUniversity", path: "/images/cq-university-min-1.jpg" },
-              { name: "Deakin University", path: "/images/deakin_8eb10829304c2dbb261e5f3d41104f91.jpg" },
-              { name: "Federation University", path: "/images/federation-min-1.jpg" },
-              { name: "Northern College", path: "/images/northern-1-min-1.jpg" }
+              { name: "RMIT University", path: imgUrl("/images/rmit_2ec52709f2c89eec6f94fd4637a4bf8a.jpg") },
+              { name: "Humber College", path: imgUrl("/images/humber-1_e9a5115c9557af8be66ece65617d9341.jpg") },
+              { name: "Fanshawe College", path: imgUrl("/images/fanshawe_8f903f5cfe4bd72d3eb6b43fcb2dea88.jpg") },
+              { name: "St. Clair College", path: imgUrl("/images/stclair-1_223f348bbc2b391d2f281e3f465043f2.jpg") },
+              { name: "Cambrian College", path: imgUrl("/images/cambrian_3deb11bb70d311c2b5780092d35e279a.jpg") },
+              { name: "ATMC", path: imgUrl("/images/atmc_0bf34ac4c4e3ab5be536563ccbe4400a.jpg") },
+              { name: "Charles Sturt University", path: imgUrl("/images/charles_cf25411c1d2b36e17ca3440e9f595af9.jpg") },
+              { name: "Charles Darwin University", path: imgUrl("/images/charlesdarwin-1.jpg") },
+              { name: "CQUniversity", path: imgUrl("/images/cq-university-min-1.jpg") },
+              { name: "Deakin University", path: imgUrl("/images/deakin_8eb10829304c2dbb261e5f3d41104f91.jpg") },
+              { name: "Federation University", path: imgUrl("/images/federation-min-1.jpg") },
+              { name: "Northern College", path: imgUrl("/images/northern-1-min-1.jpg") }
             ].map((logo, idx) => (
               <div key={idx} className="partner-logo-card">
                 <img src={logo.path} alt={logo.name} />
