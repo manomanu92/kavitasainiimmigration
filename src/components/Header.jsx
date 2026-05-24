@@ -164,17 +164,6 @@ export default function Header({ onOpenCallback }) {
                   </div>
                 </div>
 
-                {/* Personality Development (Sub-menu) */}
-                <div style={styles.dropdownItemContainer} className="dropdown-item-container">
-                  <span style={styles.dropdownLink} className="dropdown-link-item">
-                    Personality Development
-                  </span>
-                  <div style={styles.subMenu} className="sub-menu">
-                    <Link to="/career-counselling" style={styles.subDropdownLink}>Career Counselling</Link>
-                    <Link to="/corporate-soft-skills" style={styles.subDropdownLink}>Corporate & Soft Skills</Link>
-                  </div>
-                </div>
-
                 {/* Study Visa (Sub-menu) */}
                 <div style={styles.dropdownItemContainer} className="dropdown-item-container">
                   <Link to="/study-visa" style={styles.dropdownLink} className="dropdown-link-item">
@@ -274,25 +263,6 @@ export default function Header({ onOpenCallback }) {
                         <div style={styles.mobileSubSubLinks}>
                           <Link to="/ielts" style={styles.mobileSubLink}>IELTS</Link>
                           <Link to="/spoken-english" style={styles.mobileSubLink}>Spoken English</Link>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Mobile Sub-Accordion: Personality Development */}
-                    <div style={styles.mobileAccordion}>
-                      <button 
-                        onClick={() => setMobileServicesSub(mobileServicesSub === 'personality' ? null : 'personality')}
-                        style={styles.mobileSubAccordionBtn}
-                      >
-                        Personality Development <ChevronDown size={14} style={{
-                          transform: mobileServicesSub === 'personality' ? 'rotate(180deg)' : 'none',
-                          transition: '0.2s'
-                        }} />
-                      </button>
-                      {mobileServicesSub === 'personality' && (
-                        <div style={styles.mobileSubSubLinks}>
-                          <Link to="/career-counselling" style={styles.mobileSubLink}>Career Counselling</Link>
-                          <Link to="/corporate-soft-skills" style={styles.mobileSubLink}>Corporate & Soft Skills</Link>
                         </div>
                       )}
                     </div>
