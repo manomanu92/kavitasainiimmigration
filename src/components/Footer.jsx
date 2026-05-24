@@ -112,8 +112,7 @@ export default function Footer() {
           <div style={styles.contactItems}>
             <p style={styles.contactText}>SCF 10, GIANI ZAIL SINGH NAGAR, ROPAR, Punjab</p>
             <p style={styles.contactText}>Mississauga, Toronto</p>
-            <p style={{ ...styles.contactText, marginTop: '8px' }}>+91 98162 21774</p>
-            <p style={styles.contactText}>+1 (437) 232 3647</p>
+            <p style={{ ...styles.contactText, marginTop: '8px' }}>+1 (437) 232 3647</p>
           </div>
 
           {/* Email Subscription Box */}

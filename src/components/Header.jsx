@@ -100,9 +100,9 @@ export default function Header({ onOpenCallback }) {
               <Mail size={14} style={{ marginRight: '6px' }} />
               <span style={styles.topText}>kavitasainiimmigration@gmail.com</span>
             </a>
-            <a href="tel:+919816221774" style={styles.topLink}>
+            <a href="tel:+14372323647" style={styles.topLink}>
               <Phone size={14} style={{ marginRight: '6px' }} />
-              <span style={styles.topText}>+91 98162 21774 | +91 82828 10356 | +1 437 232 3647</span>
+              <span style={styles.topText}>+1 (437) 232 3647</span>
             </a>
           </div>
           <div style={styles.topBarRight}>

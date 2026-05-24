@@ -118,7 +118,6 @@ export default function Contact() {
               </p>
               <div style={styles.officeContact}>
                 <a href="tel:+919816221774" style={styles.contactLink}>+91 98162 21774</a>
-                <a href="tel:+14372323647"  style={styles.contactLink}>+1 (437) 232 3647</a>
               </div>
             </div>
 
@@ -127,6 +126,9 @@ export default function Contact() {
               <p style={styles.officeText}>
                 Mississauga, Toronto
               </p>
+              <div style={styles.officeContact}>
+                <a href="tel:+14372323647" style={styles.contactLink}>+1 (437) 232 3647</a>
+              </div>
             </div>
 
           </div>
