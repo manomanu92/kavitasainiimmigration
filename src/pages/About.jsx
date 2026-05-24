@@ -1,13 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function About() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const stats = [
-    { value: '11,756 +', label: 'Admission Letters' },
-    { value: '15,608 +', label: 'Client Counselled' },
-    { value: '8,970 +', label: 'Successfull Visas' },
-    { value: '3', label: 'Office in India' }
+
+  // Count-up animation — same as home page
+  const pillarsRef = useRef(null);
+  const pillarsStats = [
+    { target: 11756, suffix: ' +', label: 'Admission Letters' },
+    { target: 15608, suffix: ' +', label: 'Client Counselled' },
+    { target: 8970,  suffix: ' +', label: 'Successfull Visas' }
   ];
+  const [counts, setCounts] = useState(pillarsStats.map(() => 0));
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = pillarsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 2000;
+          const steps = 60;
+          const interval = duration / steps;
+          let step = 0;
+          const timer = setInterval(() => {
+            step++;
+            const eased = 1 - Math.pow(1 - step / steps, 3);
+            setCounts(pillarsStats.map(s => Math.round(s.target * eased)));
+            if (step >= steps) clearInterval(timer);
+          }, interval);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div style={styles.page}>
@@ -26,7 +55,23 @@ export default function About() {
           <div style={styles.introLeft}>
             <h2 style={styles.heading}>Study Abroad with the Best Visa Consultants and Online IELTS Institute</h2>
             <p style={styles.desc}>
-              HASHTAG OVERSEAS is widely recognized as the top-notch IELTS institute in Chandigarh and Rupnagar. We pride ourselves on being the premier visa consultancy in Chandigarh, situated in the thriving region of North India. With our exceptional services and dedicated team, we are confident in our ability to help you achieve your goals. Our goal is to empower students and provide them with outstanding English education and visa assistance. We strive for excellence in everything we do and are dedicated to helping students achieve their dreams of studying abroad. With our expertise and commitment, we believe that nothing is beyond reach. Join us on this incredible journey to a brighter future!
+              At Kavita Saini Immigration Inc., we believe that immigration is not just a process — it is a life-changing journey that shapes your future, your career, and your family's opportunities. Our role is to make that journey clear, structured, and successful.
+            </p>
+            <p style={{ ...styles.desc, marginTop: '16px' }}>
+              We are a professional immigration consultancy dedicated to helping individuals, families, students, and skilled professionals navigate the complexities of Canadian immigration with confidence and clarity.
+            </p>
+            <p style={{ ...styles.desc, marginTop: '16px' }}>
+              With a strong commitment to ethical practice, transparency, and client success, we guide you at every step — from initial eligibility assessment to final visa approval and settlement support.
+            </p>
+            <h3 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--primary-dark)', marginTop: '28px', marginBottom: '12px', fontFamily: 'var(--font-title)' }}>Who We Are</h3>
+            <p style={styles.desc}>
+              Kavita Saini Immigration Inc. is built on the foundation of trust, integrity, and deep knowledge of Canadian immigration systems.
+            </p>
+            <p style={{ ...styles.desc, marginTop: '16px' }}>
+              Led by experienced immigration consultant Kavita Saini, our firm combines professional expertise with a personalized approach to ensure every client receives tailored guidance based on their unique profile and goals.
+            </p>
+            <p style={{ ...styles.desc, marginTop: '16px' }}>
+              We understand that no two immigration cases are the same. That's why we carefully analyze your background, qualifications, and aspirations before recommending the most suitable immigration pathway.
             </p>
           </div>
           
@@ -114,15 +159,15 @@ export default function About() {
       </section>
 
       {/* Section 4: Pillars of Success */}
-      <section className="section" style={{ backgroundColor: '#faf8fc', paddingTop: '80px', paddingBottom: '80px', borderTop: '1px solid rgba(103, 35, 154, 0.05)' }}>
+      <section ref={pillarsRef} className="section" style={{ backgroundColor: '#faf8fc', paddingTop: '48px', paddingBottom: '48px', borderTop: '1px solid rgba(103, 35, 154, 0.05)' }}>
         <div className="container">
-          <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '36px' }}>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000' }}>Pillars of Success</h2>
           </div>
-          <div className="stats-grid-exact">
-            {stats.map((stat, idx) => (
+          <div className="stats-grid-exact" style={{ gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '900px', margin: '0 auto' }}>
+            {pillarsStats.map((stat, idx) => (
               <div key={idx} className="card stat-card-exact">
-                <h2 className="stat-card-value-exact">{stat.value}</h2>
+                <h2 className="stat-card-value-exact">{counts[idx].toLocaleString('en-IN')}{stat.suffix}</h2>
                 <p className="stat-card-label-exact">{stat.label}</p>
               </div>
             ))}
