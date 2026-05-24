@@ -19,44 +19,68 @@ export default function Home({ onOpenCallback }) {
 
   const googleReviews = [
     {
-      name: "SHUBINDU SHARMA",
-      date: "2024-01-09",
-      avatarColor: "#e6f4f8",
-      avatarText: "S",
+      name: "Noorul Fusra",
+      date: "March 2026",
+      avatarColor: "#4285F4",
+      avatarText: "N",
       rating: 5,
-      text: "Hi everyone my name is shubindu sharma. I had applied for the canada study visa from hashtag overseas. First I would like to thank hashtag oversea to made my drea... Read more"
+      text: "We have had excellent experience working with Kavita on multiple IRCC applications including our PR application. Each time no matter how big or small the application is she takes good care throughout and makes sure all the requirements are met through appropriate documentation submission. We highly recommend working with her."
+    },
+    {
+      name: "Manjinder Singh",
+      date: "March 2026",
+      avatarColor: "#34A853",
+      avatarText: "M",
+      rating: 5,
+      text: "I had a great experience with Kavita mam and Heena mam applying for my parents' Super Visa. They were super helpful with the documentation and made the whole process easy. I was thrilled it got approved so quickly. Highly recommend their services."
+    },
+    {
+      name: "Parneet Kaur",
+      date: "December 2025",
+      avatarColor: "#67239a",
+      avatarText: "P",
+      rating: 5,
+      text: "I had a great experience with Kavita Saini Immigration! They helped me get my Canadian study visa extension in less than 2 months. The process was smooth and stress-free because of their guidance. A special thanks to Kavita ma'am for her support, very professional and always available to answer my questions."
+    },
+    {
+      name: "Gurjot Rai",
+      date: "February 2026",
+      avatarColor: "#f5b943",
+      avatarText: "G",
+      rating: 5,
+      text: "I sincerely want to thank you for your outstanding work and support throughout my work permit process. Getting my approval within just two weeks was amazing, and I truly appreciate your dedication, professionalism, and guidance. Thank you again for making this process smooth and stress-free."
     },
     {
       name: "Jasper Timoty",
-      date: "2023-12-20",
-      avatarColor: "#67239a",
+      date: "December 2025",
+      avatarColor: "#8b5cf6",
       avatarText: "J",
       rating: 5,
-      text: "Very much satisfied!! Got my visa in around 2 months. Very friendly. Very much satisfied. 😆"
+      text: "Very much satisfied with Kavita Saini Immigration services, despite some hurdles in my study extension process, they helped me get the extension on time without any problem. Owe them big time, Thank you!"
     },
     {
-      name: "Jashan Deep Kaur",
-      date: "2023-12-19",
+      name: "Jolly George",
+      date: "September 2025",
       avatarColor: "#00a896",
       avatarText: "J",
       rating: 5,
-      text: "My name is jashan deep k... from patiala. I have done overall 6.0 and 5.5 in one always want to study in UI... Read more"
+      text: "I had a wonderful experience with Kavita Saini Immigration Inc. I received my visa in just one week, thanks to their efficient and professional services. Special thanks to Kavita, Heena, and Kajal for their constant support — they guided me patiently through every step of the process. Highly recommend their services to anyone looking for smooth and reliable immigration support. Just go for it!!!!"
     },
     {
-      name: "Karanpreet Singh",
-      date: "2023-11-15",
-      avatarColor: "#f5b943",
-      avatarText: "K",
+      name: "Ranjit Kaur",
+      date: "September 2025",
+      avatarColor: "#1d4ed8",
+      avatarText: "R",
       rating: 5,
-      text: "Highly recommended for study visa! The staff is very cooperative and guide you at every step. Thanks to the whole team of hashtag overseas for my visa..."
+      text: "Kavita Saini Immigration is very good — they are very friendly with their clients as well as students. I got my UK visa within 5 days. Thank you Kavita mam for treating us well and helping prepare my interview. I recommend that if you want to apply for any visa, please contact Kavita Saini Immigration."
     },
     {
-      name: "Mehak Preet",
-      date: "2023-10-02",
+      name: "Benny Isaac",
+      date: "September 2025",
       avatarColor: "#e0115f",
-      avatarText: "M",
+      avatarText: "B",
       rating: 5,
-      text: "Excellent service and guidance by the hashtag education overseas. Everyone in the staff is very polite and helpful. Highly recommended for study visa..."
+      text: "I approached Kavita Saini Immigration for my plans to study in Canada, and honestly, it was the best decision. The team is really professional, friendly, and always available to clear even the smallest doubts. Special thanks to Heena ma'am, Kavita ma'am and Kajal ma'am — they were so patient, supportive, and made sure everything was done smoothly. Highly recommend for anyone planning to study abroad!"
     }
   ];
 
@@ -313,10 +337,33 @@ export default function Home({ onOpenCallback }) {
           <div style={styles.introLeft}>
             <h2 style={styles.title}>Your Trusted Partner for Canadian Immigration Success</h2>
             <p style={styles.desc}>
-              Best overseas education consultant - Hashtag Overseas is recognized as one of the fastest-growing overseas education consultants in Chandigarh and Rupnagar in the international education space for students creating a strong repute for genuine educational opportunities and solutions.
+              Kavita Saini Immigration Inc. is a Canada-based immigration consulting firm operating in the Greater Toronto area (Mississauga, Ontario), led by <strong>Kavita Saini</strong>. We guide clients through every step of the Canadian immigration journey with expertise, transparency, and care.
             </p>
-            <Link to="/about" className="btn btn-primary" style={{ marginTop: '24px', backgroundColor: 'var(--primary)', borderColor: 'var(--primary)', padding: '12px 30px' }}>
-              READ MORE
+
+            {/* Services List */}
+            <div style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px 24px' }}>
+              {[
+                "Canadian PR / Express Entry",
+                "Study Permits & Student Visas",
+                "Work Permits",
+                "Visitor Visas",
+                "Spousal / Family Sponsorship",
+                "Immigration Consultation & Case Support"
+              ].map((service, idx) => (
+                <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <span style={{
+                    width: '20px', height: '20px', borderRadius: '50%',
+                    backgroundColor: 'var(--primary)', color: '#fff',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '11px', fontWeight: '700', flexShrink: 0, marginTop: '2px'
+                  }}>✓</span>
+                  <span style={{ fontSize: '0.95rem', color: 'var(--text-main)', fontWeight: '500', lineHeight: '1.4' }}>{service}</span>
+                </div>
+              ))}
+            </div>
+
+            <Link to="/about" className="btn btn-primary" style={{ marginTop: '32px', backgroundColor: 'var(--primary)', borderColor: 'var(--primary)', padding: '12px 30px' }}>
+              LEARN MORE
             </Link>
           </div>
           <div style={styles.introRightVideo}>
@@ -406,11 +453,12 @@ export default function Home({ onOpenCallback }) {
       <section className="section section-bg-alt" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="container">
           <div style={{ position: 'relative', width: '100%', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#000000', marginBottom: '8px', letterSpacing: '0.5px' }}>EXCELLENT</h2>
+            <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#000000', marginBottom: '8px', letterSpacing: '0.5px' }}>4.9 / 5</h2>
             <div style={{ color: '#ffb400', fontSize: '1.8rem', marginBottom: '6px' }}>★★★★★</div>
-            <div style={{ fontSize: '0.95rem', fontWeight: '600', color: '#594d66', marginBottom: '12px' }}>
-              Based on <strong>327 reviews</strong>
+            <div style={{ fontSize: '0.95rem', fontWeight: '600', color: '#594d66', marginBottom: '4px' }}>
+              Based on <strong>55 Google reviews</strong>
             </div>
+            <div style={{ fontSize: '0.85rem', color: '#888', marginBottom: '12px' }}>Kavita Saini Immigration Inc. · Mississauga, Ontario</div>
             
             {/* Colored Google Logo */}
             <div style={{ 
