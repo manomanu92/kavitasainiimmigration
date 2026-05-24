@@ -2,6 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // GitHub Pages SPA fix — restore the path from the ?p= query param
+      (function() {
+        var p = window.location.search.match(/\?p=(.*)/);
+        if (p && p[1]) {
+          window.history.replaceState(null, null, decodeURIComponent(p[1]));
+        }
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hashtag Overseas - Best Overseas Education &amp; Visa Consultants</title>
