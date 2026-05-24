@@ -42,5 +42,3 @@ Thumbs.db
 # Claude Code — local machine settings (permissions, personal config)
 .claude/settings.local.json
 
-# Google Apps Script — edit directly in script.google.com, never commit
-google-apps-script/
