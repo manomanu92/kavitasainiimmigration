@@ -435,7 +435,7 @@ export default function About() {
             <Link to="/contact-us" className="cta-btn-primary">
               Book Free Consultation <ArrowRight size={16} />
             </Link>
-            <a href="tel:+16725014578" className="cta-btn-outline">
+            <a href="tel:+14372323647" className="cta-btn-outline">
               <Phone size={15} /> Call Us Now
             </a>
           </div>
