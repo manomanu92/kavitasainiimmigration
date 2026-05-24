@@ -142,7 +142,7 @@ export default function Home({ onOpenCallback }) {
     {
       title: "15 Years of Global Expertise",
       desc: "Trust your career with pioneers of study visa counseling and language instruction in North India.",
-      image: "/images/Artboard-5.jpg",
+      image: "/images/kavita-saini-slide.png",
       accent: "Highest Success Rate"
     },
     {
