@@ -431,7 +431,7 @@ export default function About() {
             Book a free consultation with Kavita Saini today and get a clear roadmap tailored to your profile.
           </p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="cta-btn-primary">
+            <Link to="/contact-us" className="cta-btn-primary">
               Book Free Consultation <ArrowRight size={16} />
             </Link>
             <a href="tel:+16725014578" className="cta-btn-outline">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Send, CheckCircle2 } from 'lucide-react';
+import { submitForm } from '../utils/submitForm';
 
 export default function CallBackModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -11,11 +12,13 @@ export default function CallBackModal({ isOpen, onClose }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [serverError, setServerError] = useState('');
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       setIsSuccess(false);
+      setServerError('');
       setFormData({ name: '', email: '', phone: '', visaType: 'Study Visa' });
       setErrors({});
     } else {
@@ -53,37 +56,32 @@ export default function CallBackModal({ isOpen, onClose }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Save to LocalStorage
-      const existingLeads = JSON.parse(localStorage.getItem('callback_leads') || '[]');
-      existingLeads.push({
-        ...formData,
-        id: Date.now(),
-        date: new Date().toISOString()
-      });
-      localStorage.setItem('callback_leads', JSON.stringify(existingLeads));
-      
-      setIsSubmitting(false);
+    setServerError('');
+
+    try {
+      await submitForm({ formType: 'callback', ...formData });
       setIsSuccess(true);
-      
       setTimeout(() => {
         onClose();
-      }, 2000);
-    }, 1200);
+      }, 2500);
+    } catch (err) {
+      setServerError('Something went wrong. Please try again or call us directly.');
+      console.error('[CallBackModal] submit error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div style={styles.backdrop} onClick={onClose}>
-      <div 
-        className="glass" 
-        style={styles.modal} 
+      <div
+        className="glass"
+        style={styles.modal}
         onClick={(e) => e.stopPropagation()}
       >
         <button style={styles.closeBtn} onClick={onClose} aria-label="Close modal">
@@ -104,7 +102,7 @@ export default function CallBackModal({ isOpen, onClose }) {
             <p style={styles.subtitle}>
               Fill in your details below and we will get back to you as soon as possible.
             </p>
-            
+
             <form onSubmit={handleSubmit} style={styles.form}>
               <div className="form-group">
                 <label className="form-label" htmlFor="callback-name">Name</label>
@@ -116,6 +114,7 @@ export default function CallBackModal({ isOpen, onClose }) {
                   placeholder="Your Full Name"
                   value={formData.name}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
                 {errors.name && <span style={styles.errorText}>{errors.name}</span>}
               </div>
@@ -130,6 +129,7 @@ export default function CallBackModal({ isOpen, onClose }) {
                   placeholder="username@domain.com"
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
                 {errors.email && <span style={styles.errorText}>{errors.email}</span>}
               </div>
@@ -144,6 +144,7 @@ export default function CallBackModal({ isOpen, onClose }) {
                   placeholder="+91 98765 43210"
                   value={formData.phone}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
                 {errors.phone && <span style={styles.errorText}>{errors.phone}</span>}
               </div>
@@ -156,6 +157,7 @@ export default function CallBackModal({ isOpen, onClose }) {
                   className="form-control"
                   value={formData.visaType}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 >
                   <option value="Study Visa">Study Visa</option>
                   <option value="Tourist Visa">Tourist Visa</option>
@@ -165,14 +167,16 @@ export default function CallBackModal({ isOpen, onClose }) {
                 </select>
               </div>
 
-              <button 
-                type="submit" 
-                className="btn btn-primary" 
+              {serverError && <p style={styles.serverError}>{serverError}</p>}
+
+              <button
+                type="submit"
+                className="btn btn-primary"
                 style={styles.submitBtn}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending...' : 'SEND'}
-                <Send size={16} />
+                {isSubmitting ? 'Sending…' : 'SEND'}
+                {!isSubmitting && <Send size={16} />}
               </button>
             </form>
           </>
@@ -220,11 +224,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: '0.2s',
-    '&:hover': {
-      backgroundColor: 'rgba(103, 35, 154, 0.08)',
-      color: 'var(--primary)'
-    }
+    transition: '0.2s'
   },
   title: {
     fontSize: '1.5rem',
@@ -256,6 +256,12 @@ const styles = {
     marginTop: '4px',
     display: 'block',
     fontFamily: 'var(--font-body)'
+  },
+  serverError: {
+    color: '#d32f2f',
+    fontSize: '0.85rem',
+    marginBottom: '8px',
+    textAlign: 'center'
   },
   successContainer: {
     display: 'flex',

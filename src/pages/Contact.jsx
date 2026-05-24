@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import { submitForm } from '../utils/submitForm';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,19 +9,28 @@ export default function Contact() {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.subject) return;
 
-    const existing = JSON.parse(localStorage.getItem('contact_queries') || '[]');
-    existing.push({ ...formData, id: Date.now(), date: new Date().toISOString() });
-    localStorage.setItem('contact_queries', JSON.stringify(existing));
+    setIsSubmitting(true);
+    setError('');
 
-    setSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setSubmitted(false), 4000);
+    try {
+      await submitForm({ formType: 'contact', ...formData });
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      setError('Something went wrong. Please try again or call us directly.');
+      console.error('[Contact] submit error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -33,7 +43,7 @@ export default function Contact() {
 
       {/* Hero */}
       <div style={styles.hero}>
-        <img src="/images/21.jpg" alt="Contact Hashtag Overseas" style={styles.heroImg} />
+        <img src="/images/21.jpg" alt="Contact Kavita Saini Immigration" style={styles.heroImg} />
       </div>
 
       {/* Form Section */}
@@ -61,6 +71,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div className="form-group">
@@ -72,6 +83,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div className="form-group">
@@ -83,6 +95,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
@@ -95,11 +108,19 @@ export default function Contact() {
                   style={styles.textarea}
                   value={formData.message}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
 
-              <button type="submit" className="btn" style={styles.submitBtn}>
-                Submit
+              {error && <p style={styles.errorText}>{error}</p>}
+
+              <button
+                type="submit"
+                className="btn"
+                style={styles.submitBtn}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending…' : 'Submit'}
               </button>
             </form>
           )}
@@ -223,6 +244,11 @@ const styles = {
   successText: {
     fontSize: '1.1rem',
     color: 'var(--text-muted)'
+  },
+  errorText: {
+    color: '#d32f2f',
+    fontSize: '0.875rem',
+    marginBottom: '8px'
   },
 
   /* Offices */
