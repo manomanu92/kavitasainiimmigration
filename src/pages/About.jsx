@@ -1,15 +1,192 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Shield, Star, Users, Award, CheckCircle, ArrowRight, MapPin, Phone } from 'lucide-react';
+
+/* ─── Inject responsive CSS once ─── */
+const aboutCSS = `
+  .about-intro-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .about-founder-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1024px) {
+    .about-intro-grid,
+    .about-founder-grid {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+    .about-why-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .about-why-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  .why-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(103, 35, 154, 0.06);
+    border: 1px solid rgba(103, 35, 154, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .why-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(103, 35, 154, 0.13);
+  }
+  .why-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(103,35,154,0.1), rgba(103,35,154,0.18));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .about-video-thumbnail:hover .yt-play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .yt-play-btn {
+    transition: transform 0.2s ease;
+  }
+  .cta-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .cta-btn-primary:hover {
+    background: var(--accent);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .cta-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 50px;
+    border: 2px solid rgba(255,255,255,0.55);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  .cta-btn-outline:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+  }
+  .founder-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+  }
+  .value-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(103,35,154,0.07);
+    color: var(--primary-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 50px;
+    margin: 4px;
+  }
+`;
+
+if (typeof document !== 'undefined' && !document.getElementById('about-styles')) {
+  const el = document.createElement('style');
+  el.id = 'about-styles';
+  el.textContent = aboutCSS;
+  document.head.appendChild(el);
+}
+
+/* ─── Why-choose-us data ─── */
+const whyCards = [
+  {
+    Icon: Shield,
+    title: 'Licensed & Trusted',
+    desc: 'Regulated Canadian Immigration Consultant (RCIC) — fully compliant with ICCRC standards and Canadian law.',
+    color: '#67239a'
+  },
+  {
+    Icon: Star,
+    title: 'Proven Track Record',
+    desc: 'Thousands of approved visas across study, work, PR, and family pathways over 15+ years of practice.',
+    color: '#e2a228'
+  },
+  {
+    Icon: Users,
+    title: 'Personalized Guidance',
+    desc: 'Every client gets a dedicated consultation — your profile, goals, and timeline shape our strategy.',
+    color: '#4b1673'
+  },
+  {
+    Icon: Award,
+    title: 'End-to-End Support',
+    desc: 'From eligibility assessment to post-landing settlement — we are with you through every stage.',
+    color: '#8e3cd7'
+  }
+];
+
+/* ─── Pillars stats ─── */
+const pillarsStats = [
+  { target: 11756, suffix: ' +', label: 'Admission Letters' },
+  { target: 15608, suffix: ' +', label: 'Clients Counselled' },
+  { target: 8970,  suffix: ' +', label: 'Successful Visas' }
+];
+
+/* ─── Core values ─── */
+const values = ['Transparency', 'Integrity', 'Accuracy', 'Client First', 'Confidentiality'];
 
 export default function About() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Count-up animation — same as home page
+  /* Count-up animation */
   const pillarsRef = useRef(null);
-  const pillarsStats = [
-    { target: 11756, suffix: ' +', label: 'Admission Letters' },
-    { target: 15608, suffix: ' +', label: 'Client Counselled' },
-    { target: 8970,  suffix: ' +', label: 'Successfull Visas' }
-  ];
   const [counts, setCounts] = useState(pillarsStats.map(() => 0));
   const hasAnimated = useRef(false);
 
@@ -20,9 +197,8 @@ export default function About() {
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
-          const duration = 2000;
           const steps = 60;
-          const interval = duration / steps;
+          const interval = 2000 / steps;
           let step = 0;
           const timer = setInterval(() => {
             step++;
@@ -39,130 +215,196 @@ export default function About() {
   }, []);
 
   return (
-    <div style={styles.page}>
-      {/* Banner / Collage Image Grid at top */}
-      <div style={styles.collageBanner}>
-        <img 
-          src="/images/Artboard-7.jpg" 
-          alt="Student visa successes collage grid" 
-          style={styles.collageImage} 
+    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
+
+      {/* ── 1. Banner ── */}
+      <div style={{ width: '100%', overflow: 'hidden', backgroundColor: '#f7f5fa' }}>
+        <img
+          src="/images/Artboard-7.jpg"
+          alt="Kavita Saini Immigration — success stories collage"
+          style={{ width: '100%', height: 'auto', display: 'block' }}
         />
       </div>
 
-      {/* Section 1: Introduction & Video */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '60px' }}>
-        <div className="container" style={styles.introGrid}>
-          <div style={styles.introLeft}>
-            <h2 style={styles.heading}>Study Abroad with the Best Visa Consultants and Online IELTS Institute</h2>
-            <p style={styles.desc}>
-              At Kavita Saini Immigration Inc., we believe that immigration is not just a process — it is a life-changing journey that shapes your future, your career, and your family's opportunities. Our role is to make that journey clear, structured, and successful.
-            </p>
-            <p style={{ ...styles.desc, marginTop: '16px' }}>
-              We are a professional immigration consultancy dedicated to helping individuals, families, students, and skilled professionals navigate the complexities of Canadian immigration with confidence and clarity.
-            </p>
-            <p style={{ ...styles.desc, marginTop: '16px' }}>
-              With a strong commitment to ethical practice, transparency, and client success, we guide you at every step — from initial eligibility assessment to final visa approval and settlement support.
-            </p>
-            <h3 style={{ fontSize: '1.3rem', fontWeight: '800', color: 'var(--primary-dark)', marginTop: '28px', marginBottom: '12px', fontFamily: 'var(--font-title)' }}>Who We Are</h3>
-            <p style={styles.desc}>
-              Kavita Saini Immigration Inc. is built on the foundation of trust, integrity, and deep knowledge of Canadian immigration systems.
-            </p>
-            <p style={{ ...styles.desc, marginTop: '16px' }}>
-              Led by experienced immigration consultant Kavita Saini, our firm combines professional expertise with a personalized approach to ensure every client receives tailored guidance based on their unique profile and goals.
-            </p>
-            <p style={{ ...styles.desc, marginTop: '16px' }}>
-              We understand that no two immigration cases are the same. That's why we carefully analyze your background, qualifications, and aspirations before recommending the most suitable immigration pathway.
-            </p>
-          </div>
-          
-          <div style={styles.introRightVideo}>
-            <div style={styles.videoLinkWrapper}>
-              {isVideoPlaying ? (
-                <div style={{ ...styles.videoThumbnailContainer, paddingBottom: '56.25%', position: 'relative' }}>
-                  <iframe 
-                    src="https://www.youtube.com/embed/O4GnLaRL_ek?autoplay=1" 
-                    title="YouTube video player" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowFullScreen 
-                    style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, borderRadius: '8px' }}
-                  ></iframe>
-                </div>
-              ) : (
-                <div style={styles.videoThumbnailContainer} onClick={() => setIsVideoPlaying(true)}>
-                  <img 
-                    src="/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg" 
-                    alt="YouTube Video Thumbnail" 
-                    style={styles.introVideoThumbnail} 
-                  />
-                  <div style={styles.youtubePlayOverlay}>
-                    <svg viewBox="0 0 68 48" width="68" height="48">
-                      <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.06 0 24 0 24s.06 10.94 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.94 68 24 68 24s-.06-10.94-1.48-16.26z" fill="#f00" />
-                      <polygon points="27.41 33 45.41 24 27.41 15" fill="#fff" />
-                    </svg>
-                  </div>
-                  <div style={styles.watchOnYoutubeWatermark}>
-                    <span>Watch on</span>
-                    <svg viewBox="0 0 60 16" width="60" height="16">
-                      <path d="M10 2v12h2v-12h-2zm4.5 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5h1v6h2V2h-3zm0 2h1v2h-1V4zm8.5-2v10c0 .8-.7 1.5-1.5 1.5h-1c-.8 0-1.5-.7-1.5-1.5V2h2v8h1V2h1zm3-2v2h2v12h2V2h2V0h-6zm10 2c-.8 0-1.5.7-1.5 1.5v9c0 .8.7 1.5 1.5 1.5h1c.8 0 1.5-.7 1.5-1.5v-9c0-.8-.7-1.5-1.5-1.5h-1zm0 2h1v7h-1V4z" fill="#fff" />
-                    </svg>
-                  </div>
-                </div>
-              )}
+      {/* ── 2. Our Story + Video ── */}
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '64px' }}>
+        <div className="container">
+          <div className="about-intro-grid">
+
+            {/* Left — text */}
+            <div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(103,35,154,0.08)', color: 'var(--primary)', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '50px', marginBottom: '20px' }}>
+                Our Story
+              </div>
+              <h2 style={{ fontSize: '2.25rem', fontWeight: '800', color: 'var(--primary-dark)', marginBottom: '20px', lineHeight: '1.25', fontFamily: 'var(--font-title)' }}>
+                Making Canadian Immigration Clear, Structured &amp; Successful
+              </h2>
+              <p style={S.desc}>
+                At Kavita Saini Immigration Inc., we believe immigration is not just a process — it is a life-changing journey that shapes your future, your career, and your family's opportunities. Our role is to make that journey clear, structured, and successful.
+              </p>
+              <p style={{ ...S.desc, marginTop: '16px' }}>
+                We are a professional immigration consultancy dedicated to helping individuals, families, students, and skilled professionals navigate the complexities of Canadian immigration with confidence and clarity.
+              </p>
+              <p style={{ ...S.desc, marginTop: '16px' }}>
+                With a strong commitment to ethical practice, transparency, and client success, we guide you at every step — from initial eligibility assessment to final visa approval and settlement support.
+              </p>
+
+              {/* Core values pills */}
+              <div style={{ marginTop: '28px', display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                {values.map(v => (
+                  <span key={v} className="value-pill">
+                    <CheckCircle size={13} color="var(--primary)" />
+                    {v}
+                  </span>
+                ))}
+              </div>
             </div>
+
+            {/* Right — video */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+              <div style={{ width: '100%', maxWidth: '560px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 16px 48px rgba(103,35,154,0.14)' }}>
+                {isVideoPlaying ? (
+                  <div style={{ position: 'relative', paddingBottom: '56.25%' }}>
+                    <iframe
+                      src="https://www.youtube.com/embed/O4GnLaRL_ek?autoplay=1"
+                      title="Kavita Saini Immigration — About Us"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="about-video-thumbnail"
+                    onClick={() => setIsVideoPlaying(true)}
+                    style={{ position: 'relative', paddingBottom: '56.25%', backgroundColor: '#000', cursor: 'pointer' }}
+                  >
+                    <img
+                      src="/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg"
+                      alt="Watch our story on YouTube"
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}
+                    />
+                    {/* Play button */}
+                    <div className="yt-play-btn" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 2 }}>
+                      <svg viewBox="0 0 68 48" width="72" height="52">
+                        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.06 0 24 0 24s.06 10.94 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.94 68 24 68 24s-.06-10.94-1.48-16.26z" fill="#f00" />
+                        <polygon points="27.41 33 45.41 24 27.41 15" fill="#fff" />
+                      </svg>
+                    </div>
+                    {/* Label */}
+                    <div style={{ position: 'absolute', bottom: '14px', left: '14px', background: 'rgba(0,0,0,0.68)', color: '#fff', padding: '5px 12px', borderRadius: '6px', fontSize: '0.82rem', fontWeight: '600', zIndex: 2 }}>
+                      ▶ Watch Our Story
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Section 2: Image Card & Secondary Text */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '40px', paddingBottom: '40px' }}>
-        <div className="container" style={styles.contentGrid}>
-          {/* Newspaper Column */}
-          <div style={styles.newsColumn}>
-            <div style={styles.newsImageCard}>
-              <img 
-                src="/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg" 
-                alt="Hashtag Newspaper Advertisement" 
-                style={styles.newsImage} 
+      {/* ── 3. Why Choose Us ── */}
+      <section className="section" style={{ backgroundColor: '#faf8fc', paddingTop: '72px', paddingBottom: '72px', borderTop: '1px solid rgba(103,35,154,0.05)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <h2 style={{ fontSize: '2.2rem', fontWeight: '800', color: 'var(--primary-dark)', fontFamily: 'var(--font-title)', marginBottom: '12px' }}>
+              Why Choose Us
+            </h2>
+            <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', maxWidth: '560px', margin: '0 auto', lineHeight: '1.7' }}>
+              Thousands of families have trusted us to navigate Canada's immigration system — here's what sets us apart.
+            </p>
+          </div>
+
+          <div className="about-why-grid">
+            {whyCards.map(({ Icon, title, desc, color }) => (
+              <div key={title} className="why-card">
+                <div className="why-icon-wrap">
+                  <Icon size={28} color={color} strokeWidth={1.8} />
+                </div>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--primary-dark)', marginBottom: '10px', fontFamily: 'var(--font-title)' }}>
+                  {title}
+                </h3>
+                <p style={{ fontSize: '0.93rem', lineHeight: '1.65', color: 'var(--text-muted)' }}>
+                  {desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. Meet the Founder ── */}
+      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+        <div className="container">
+          <div className="about-founder-grid">
+
+            {/* Left — image */}
+            <div style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: '0 20px 60px rgba(103,35,154,0.14)', border: '1px solid rgba(103,35,154,0.07)' }}>
+              <img
+                src="/images/kavita-saini-slide.png"
+                alt="Kavita Saini — Founder, Kavita Saini Immigration Inc."
+                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
               />
             </div>
-          </div>
-          
-          {/* Text Column */}
-          <div style={styles.textColumn}>
-            <p style={styles.bodyText}>
-              HASHTAG OVERSEAS is a renowned visa immigration and premier IELTS institute in Chandigarh and Rupnagar. Our commitment lies in delivering exceptional training for various English Language Examinations conducted worldwide. Being a trusted name in the realm of IELTS coaching and online IELTS training, we pride ourselves on assisting students in shaping their educational aspirations and overseas career prospects. Our proficiency extends across multiple domains of the English Programs sphere, encompassing services such as IELTS and PTE preparation, Spoken English courses, Business English training, General English classes, Student Visa Counseling, Online IELTS training programs, Interview Preparation sessions, and Personality Development workshops. By providing a comprehensive range of offerings, we empower individuals to achieve extraordinary success in their international endeavors.
-            </p>
-            <p style={styles.bodyText}>
-              Since our inception, our foremost objective has been to support students in realizing their study abroad dreams. We strive to offer innovative solutions tailored to each student’s unique requirements, distinguishing us as the leading IELTS institute in Chandigarh among other visa consultants. At Hashtag Overseas, we prioritize professionalism and expertise when it comes to test preparation.
-            </p>
-            <p style={styles.bodyText}>
-              Our aim is to streamline the entire process of studying abroad by offering seamless guidance from exam preparation to enrollment at foreign institutions. With an experienced faculty and dedicated counsellors at our disposal, we are committed to helping students identify their strengths and choose the most suitable career path efficiently.
-            </p>
+
+            {/* Right — bio */}
+            <div>
+              <div className="founder-badge">
+                <Award size={13} />
+                Meet the Founder
+              </div>
+              <h2 style={{ fontSize: '2.1rem', fontWeight: '800', color: 'var(--primary-dark)', fontFamily: 'var(--font-title)', marginBottom: '6px', lineHeight: '1.25' }}>
+                Kavita Saini
+              </h2>
+              <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--primary)', marginBottom: '20px' }}>
+                Regulated Canadian Immigration Consultant (RCIC)
+              </p>
+              <p style={S.desc}>
+                With over 15 years of experience in Canadian immigration and study-abroad counselling, Kavita Saini has helped thousands of individuals and families achieve their dreams of living, working, and studying in Canada.
+              </p>
+              <p style={{ ...S.desc, marginTop: '14px' }}>
+                Kavita founded Kavita Saini Immigration Inc. with a single mission: to provide honest, transparent, and result-oriented immigration guidance. As a Regulated Canadian Immigration Consultant, she holds herself to the highest standards set by IRCC and ICCRC.
+              </p>
+              <p style={{ ...S.desc, marginTop: '14px' }}>
+                Her approach is deeply personal — she understands that no two immigration cases are alike, and she takes the time to analyze each client's unique background, qualifications, and aspirations before recommending the most suitable pathway.
+              </p>
+
+              {/* Credentials */}
+              <div style={{ marginTop: '28px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {[
+                  '15+ Years of Immigration Experience',
+                  'Regulated Canadian Immigration Consultant (RCIC)',
+                  'Offices in Canada & India (Punjab, HP)',
+                  'Expertise across Study, Work, PR & Family Visas'
+                ].map(item => (
+                  <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                    <CheckCircle size={16} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Section 3: Full-width Paragraphs */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '20px', paddingBottom: '60px' }}>
-        <div className="container" style={styles.fullWidthTextContainer}>
-          <p style={styles.bodyText}>
-            We also emphasize the importance of individual counseling sessions with each student prior to their enrollment in our online IELTS or general classes. These sessions allow us to evaluate their current level of proficiency and tailor our resources accordingly.
-          </p>
-          <p style={styles.bodyText}>
-            Our students have achieved exceptional scores and gained admissions to renowned institutions in various countries. We take great pride in our dedicated faculty who consistently go above and beyond to create an unforgettable learning experience for our students. At Hashtag Overseas, we are committed to establishing ourselves as the premier IELTS institute and visa consultants in Chandigarh and Rupnagar, offering high-quality education at affordable rates. We are dedicated to making education accessible to all individuals aspiring to succeed in their careers.
-          </p>
-          <p style={styles.bodyText}>
-            To further enhance our offerings, we have introduced specialized Online IELTS training that thoroughly prepares students for all sections of the test including Reading, Writing, Listening, and Speaking. Through live online group classes led by experienced IELTS trainers, we provide video tutorials and comprehensive guidance covering everything you need to know for the IELTS exam. Our goal is to empower our students with the necessary skills and knowledge needed for their future success.
-          </p>
-        </div>
-      </section>
-
-      {/* Section 4: Pillars of Success */}
-      <section ref={pillarsRef} className="section" style={{ backgroundColor: '#faf8fc', paddingTop: '48px', paddingBottom: '48px', borderTop: '1px solid rgba(103, 35, 154, 0.05)' }}>
+      {/* ── 5. Pillars of Success ── */}
+      <section
+        ref={pillarsRef}
+        className="section"
+        style={{ backgroundColor: '#faf8fc', paddingTop: '64px', paddingBottom: '64px', borderTop: '1px solid rgba(103,35,154,0.05)' }}
+      >
         <div className="container">
-          <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '36px' }}>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000' }}>Pillars of Success</h2>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <h2 style={{ fontSize: '2.2rem', fontWeight: '800', color: '#000000', fontFamily: 'var(--font-title)' }}>
+              Pillars of Success
+            </h2>
+            <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginTop: '10px' }}>
+              Numbers that reflect the trust our clients place in us.
+            </p>
           </div>
           <div className="stats-grid-exact" style={{ gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '900px', margin: '0 auto' }}>
             {pillarsStats.map((stat, idx) => (
@@ -174,164 +416,41 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* ── 6. CTA ── */}
+      <section style={{ background: 'linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%)', padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Decorative circles */}
+        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '280px', height: '280px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '-80px', left: '-80px', width: '320px', height: '320px', borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
+
+        <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <h2 style={{ fontSize: '2.4rem', fontWeight: '800', color: '#ffffff', fontFamily: 'var(--font-title)', marginBottom: '16px', lineHeight: '1.25' }}>
+            Ready to Start Your Canadian Journey?
+          </h2>
+          <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.82)', maxWidth: '520px', margin: '0 auto 36px', lineHeight: '1.7' }}>
+            Book a free consultation with Kavita Saini today and get a clear roadmap tailored to your profile.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/contact" className="cta-btn-primary">
+              Book Free Consultation <ArrowRight size={16} />
+            </Link>
+            <a href="tel:+16725014578" className="cta-btn-outline">
+              <Phone size={15} /> Call Us Now
+            </a>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
 
-const styles = {
-  page: {
-    backgroundColor: '#ffffff',
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  collageBanner: {
-    width: '100%',
-    overflow: 'hidden',
-    backgroundColor: '#f7f5fa'
-  },
-  collageImage: {
-    width: '100%',
-    height: 'auto',
-    display: 'block'
-  },
-  introGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1.1fr 0.9fr',
-    gap: '56px',
-    alignItems: 'center'
-  },
-  introLeft: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start'
-  },
-  heading: {
-    fontSize: '2.25rem',
-    fontWeight: '800',
-    color: 'var(--primary-dark)',
-    marginBottom: '20px',
-    lineHeight: '1.25',
-    fontFamily: 'var(--font-title)'
-  },
+/* ─── Shared style tokens ─── */
+const S = {
   desc: {
-    fontSize: '1.05rem',
-    lineHeight: '1.7',
-    color: 'var(--text-muted)',
-    textAlign: 'justify',
-    margin: 0
-  },
-  introRightVideo: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%'
-  },
-  videoLinkWrapper: {
-    display: 'block',
-    width: '100%',
-    maxWidth: '560px',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-  },
-  videoThumbnailContainer: {
-    position: 'relative',
-    width: '100%',
-    paddingBottom: '56.25%', // 16:9 ratio
-    backgroundColor: '#000000',
-    cursor: 'pointer'
-  },
-  introVideoThumbnail: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover'
-  },
-  youtubePlayOverlay: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: 2,
-    transition: 'transform 0.2s'
-  },
-  watchOnYoutubeWatermark: {
-    position: 'absolute',
-    bottom: '12px',
-    left: '12px',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    color: '#ffffff',
-    padding: '4px 10px',
-    borderRadius: '4px',
-    fontSize: '0.85rem',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    zIndex: 2
-  },
-  contentGrid: {
-    display: 'grid',
-    gridTemplateColumns: '0.85fr 1.15fr',
-    gap: '56px',
-    alignItems: 'start'
-  },
-  newsColumn: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  newsImageCard: {
-    width: '100%',
-    maxWidth: '420px',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-    border: '1px solid rgba(103, 35, 154, 0.05)'
-  },
-  newsImage: {
-    width: '100%',
-    height: 'auto',
-    display: 'block',
-    objectFit: 'cover'
-  },
-  textColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px'
-  },
-  bodyText: {
-    fontSize: '1.05rem',
+    fontSize: '1.02rem',
     lineHeight: '1.75',
     color: 'var(--text-muted)',
-    textAlign: 'justify',
-    margin: 0,
-    fontFamily: 'var(--font-body)'
-  },
-  fullWidthTextContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-    maxWidth: 'var(--max-width)',
-    margin: '0 auto'
+    margin: 0
   }
 };
-
-const aboutStyles = `
-  @media (max-width: 1024px) {
-    div[style*="display: grid; grid-template-columns: 1.15fr 0.85fr"],
-    div[style*="display: grid; grid-template-columns: 1.1fr 0.9fr"],
-    div[style*="display: grid; grid-template-columns: 0.85fr 1.15fr"] {
-      grid-template-columns: 1fr !important;
-      gap: 40px !important;
-    }
-  }
-`;
-
-if (typeof document !== 'undefined') {
-  const dynamicStyle = document.createElement('style');
-  dynamicStyle.textContent = aboutStyles;
-  document.head.appendChild(dynamicStyle);
-}
