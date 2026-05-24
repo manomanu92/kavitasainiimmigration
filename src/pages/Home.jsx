@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Award, CheckCircle, Shield, Heart, GraduationCap, MapPin, 
@@ -10,6 +10,43 @@ export default function Home({ onOpenCallback }) {
   const [reviewIndex, setReviewIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  // Count-up animation for Pillars of Success
+  const pillarsRef = useRef(null);
+  const pillarsStats = [
+    { target: 11756, suffix: " +", label: "Admission Letters" },
+    { target: 15608, suffix: " +", label: "Client Counselled" },
+    { target: 8970,  suffix: " +", label: "Successfull Visas" }
+  ];
+  const [counts, setCounts] = useState(pillarsStats.map(() => 0));
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = pillarsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 2000; // ms
+          const steps = 60;
+          const interval = duration / steps;
+          let step = 0;
+          const timer = setInterval(() => {
+            step++;
+            const progress = step / steps;
+            // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCounts(pillarsStats.map(s => Math.round(s.target * eased)));
+            if (step >= steps) clearInterval(timer);
+          }, interval);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -35,20 +72,20 @@ export default function Home({ onOpenCallback }) {
       text: "I had a great experience with Kavita mam and Heena mam applying for my parents' Super Visa. They were super helpful with the documentation and made the whole process easy. I was thrilled it got approved so quickly. Highly recommend their services."
     },
     {
-      name: "Parneet Kaur",
-      date: "December 2025",
-      avatarColor: "#67239a",
-      avatarText: "P",
-      rating: 5,
-      text: "I had a great experience with Kavita Saini Immigration! They helped me get my Canadian study visa extension in less than 2 months. The process was smooth and stress-free because of their guidance. A special thanks to Kavita ma'am for her support, very professional and always available to answer my questions."
-    },
-    {
       name: "Gurjot Rai",
       date: "February 2026",
       avatarColor: "#f5b943",
       avatarText: "G",
       rating: 5,
       text: "I sincerely want to thank you for your outstanding work and support throughout my work permit process. Getting my approval within just two weeks was amazing, and I truly appreciate your dedication, professionalism, and guidance. Thank you again for making this process smooth and stress-free."
+    },
+    {
+      name: "Parneet Kaur",
+      date: "December 2025",
+      avatarColor: "#67239a",
+      avatarText: "P",
+      rating: 5,
+      text: "I had a great experience with Kavita Saini Immigration! They helped me get my Canadian study visa extension in less than 2 months. The process was smooth and stress-free because of their guidance. A special thanks to Kavita ma'am for her support, very professional and always available to answer my questions."
     },
     {
       name: "Jasper Timoty",
@@ -406,20 +443,17 @@ export default function Home({ onOpenCallback }) {
       </section>
 
       {/* Pillars of Success Section */}
-      <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+      <section ref={pillarsRef} className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="container">
           <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '48px' }}>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000' }}>Pillars of Success</h2>
           </div>
-          <div className="stats-grid-exact">
-            {[
-              { value: "11,756 +", label: "Admission Letters" },
-              { value: "15,608 +", label: "Client Counselled" },
-              { value: "8,970 +", label: "Successfull Visas" },
-              { value: "3", label: "Office in India" }
-            ].map((stat, idx) => (
+          <div className="stats-grid-exact" style={{ gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '900px', margin: '0 auto' }}>
+            {pillarsStats.map((stat, idx) => (
               <div key={idx} className="card stat-card-exact">
-                <h2 className="stat-card-value-exact">{stat.value}</h2>
+                <h2 className="stat-card-value-exact">
+                  {counts[idx].toLocaleString('en-IN')}{stat.suffix}
+                </h2>
                 <p className="stat-card-label-exact">{stat.label}</p>
               </div>
             ))}
@@ -671,9 +705,9 @@ export default function Home({ onOpenCallback }) {
           <div className="section-title-wrap" style={{ marginBottom: '48px' }}>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000', margin: 0 }}>Centres for Excellence</h2>
           </div>
-          <div className="grid-3">
-            {branches.map((branch, idx) => (
-              <div key={idx} className="card branch-card-new" style={{ textAlign: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {branches.filter(branch => branch.city === 'Ropar').map((branch, idx) => (
+              <div key={idx} className="card branch-card-new" style={{ textAlign: 'center', maxWidth: '420px', width: '100%' }}>
                 <div className="branch-img-wrap">
                   <img src={branch.image} alt={branch.city} className="branch-img" />
                 </div>
