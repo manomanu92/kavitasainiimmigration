@@ -185,52 +185,6 @@ export default function Home({ onOpenCallback }) {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  const stats = [
-    { value: "5,000+", label: "Admission Letters", desc: "Secured in top global universities" },
-    { value: "25,000+", label: "Clients Counselled", desc: "Since our establishment" },
-    { value: "4,500+", label: "Successful Visas", desc: "Across all visa categories" },
-    { value: "3", label: "Offices in India", desc: "Chandigarh, Ropar & Nalagarh" }
-  ];
-
-  const services = [
-    {
-      icon: <GraduationCap size={28} />,
-      title: "Study Visa",
-      desc: "Secure admission and student permit for top colleges in Canada, USA, UK, Australia, and New Zealand.",
-      path: "/study-visa"
-    },
-    {
-      icon: <Users size={28} />,
-      title: "Spouse Visa",
-      desc: "Bring your life partner along. Specialised guidance on spouse open work permit applications.",
-      path: "/spouse-visa"
-    },
-    {
-      icon: <Award size={28} />,
-      title: "IELTS Prep",
-      desc: "Achieve 7+ bands with expert trainers. Learn through comprehensive academic & general test mocks.",
-      path: "/ielts"
-    },
-    {
-      icon: <Heart size={28} />,
-      title: "Spoken English",
-      desc: "Build self-confidence, improve pronunciation, and gain fluency in daily conversational English.",
-      path: "/spoken-english"
-    },
-    {
-      icon: <Shield size={28} />,
-      title: "Visitor Visa",
-      desc: "Fast-track tourist visa applications for family visits, vacations, or business conferences.",
-      path: "/tourist-visa"
-    },
-    {
-      icon: <CheckCircle size={28} />,
-      title: "Career Counselling",
-      desc: "Identify your true potential and choose suitable study courses aligning with global job markets.",
-      path: "/career-counselling"
-    }
-  ];
-
   const branches = [
     {
       city: "Chandigarh",
@@ -254,37 +208,6 @@ export default function Home({ onOpenCallback }) {
       image: "/images/nalagra.jpg"
     }
   ];
-
-  const youtubeVideos = [
-    { id: "1", title: "How to fill VFS Canada Consent Form | Step-by-Step", embedUrl: "https://www.youtube.com/embed/O4GnLaRL_ek" },
-    { id: "2", title: "Why Choose USA for Higher Education? | Visa Guide", embedUrl: "https://www.youtube.com/embed/qD-p_bJ_sSc" },
-    { id: "3", title: "IELTS Preparation Tips & Tricks | Speaking & Writing", embedUrl: "https://www.youtube.com/embed/sRfe37V9vWY" }
-  ];
-
-  const blogs = [
-    {
-      title: "Top 5 Cities to Study in Canada",
-      desc: "Explore the most student-friendly Canadian cities offering premium education, affordable living, and robust job opportunities.",
-      date: "04/10/2023",
-      path: "/about",
-      image: "/images/b1-1024x320.jpg"
-    },
-    {
-      title: "Advantages Of Choosing The USA For Higher Education",
-      desc: "Understand the benefits of studying in the United States, including scholarship avenues, OPT programs, and academic prestige.",
-      date: "28/09/2023",
-      path: "/about",
-      image: "/images/b2-1024x320.jpg"
-    },
-    {
-      title: "Student Visas: Your Path to Study Abroad",
-      desc: "A comprehensive checklist detailing funds requirements, academic prerequisites, and interview prep for international student visas.",
-      date: "13/04/2023",
-      path: "/about",
-      image: "/images/b3-1024x320.jpg"
-    }
-  ];
-
 
   const prevSlide = (e) => {
     e.stopPropagation();
@@ -352,7 +275,7 @@ export default function Home({ onOpenCallback }) {
             { title: "15 Years of expertise", link: "/about" },
             { title: "Your Local Guardian in Canada", link: "/study-visa/canada" },
             { title: "Transparency Process", link: "/about" },
-            { title: <>Confirmed<br />admission</>, link: "/study-visa" }
+            { title: <>Work Permit<br />& PR Support</>, link: "/work-permit" }
           ].map((card, idx) => (
             <Link key={idx} to={card.link} className="usp-card-exact">
               <div style={styles.uspIconWrap}>
@@ -369,7 +292,7 @@ export default function Home({ onOpenCallback }) {
       </div>
 
       {/* Intro Section */}
-      <section className="section section-bg-alt" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
+      <section className="section section-bg-alt" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
         <div className="container" style={styles.introGrid}>
           <div style={styles.introLeft}>
             <h2 style={styles.title}>Your Trusted Partner for Canadian Immigration Success</h2>
@@ -442,10 +365,10 @@ export default function Home({ onOpenCallback }) {
         </div>
       </section>
 
-      {/* Pillars of Success Section */}
-      <section ref={pillarsRef} className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
+      {/* Pillars of Success + Training Centre */}
+      <section ref={pillarsRef} className="section" style={{ backgroundColor: '#ffffff', paddingTop: '48px', paddingBottom: '48px' }}>
         <div className="container">
-          <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '36px' }}>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000' }}>Pillars of Success</h2>
           </div>
           <div className="stats-grid-exact" style={{ gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: '900px', margin: '0 auto' }}>
@@ -458,33 +381,39 @@ export default function Home({ onOpenCallback }) {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* YouTube Link Banner Section */}
-      <section className="section" style={{ backgroundColor: '#faf8fc', paddingTop: '40px', paddingBottom: '40px' }}>
-        <div className="container">
-          <div className="youtube-banner-block" style={{ margin: 0 }}>
-            <span className="youtube-banner-text">
-              For watching more Youtube videos of #hashtag Overseas
-            </span>
-            <a 
-              href="https://www.youtube.com/@hashtagEducationOverseas" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="youtube-banner-btn"
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff" style={{ marginRight: '8px' }}>
-                <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.517 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.388.507 9.388.507s7.518 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-              YouTube
-            </a>
+          {/* Ropar Training Centre — inline below stats */}
+          <div style={{
+            marginTop: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '32px',
+            maxWidth: '860px',
+            margin: '40px auto 0',
+            backgroundColor: '#faf8fc',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            border: '1px solid rgba(103,35,154,0.08)',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
+          }}>
+            <img
+              src="/images/bg2-650x650-1.jpg"
+              alt="Ropar Training Centre"
+              style={{ width: '220px', minHeight: '160px', objectFit: 'cover', flexShrink: 0 }}
+            />
+            <div style={{ padding: '24px 28px 24px 0' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '1.5px' }}>Training Centre</span>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#000', margin: '6px 0 10px', fontFamily: 'var(--font-title)' }}>Ropar, Punjab</h3>
+              <p style={{ fontSize: '0.92rem', color: '#594d66', lineHeight: '1.6', margin: 0 }}>
+                IELTS &amp; Spoken English training institute with full Study Visa, Tourist Visa, and Work Permit facilities. Located at Giani Zail Singh Nagar, Ropar.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Google Reviews Section */}
-      <section className="section section-bg-alt" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+      <section className="section section-bg-alt" style={{ paddingTop: '48px', paddingBottom: '48px' }}>
         <div className="container">
           <div style={{ position: 'relative', width: '100%', textAlign: 'center' }}>
             <h2 style={{ fontSize: '1.8rem', fontWeight: '800', color: '#000000', marginBottom: '8px', letterSpacing: '0.5px' }}>4.9 / 5</h2>
@@ -699,32 +628,10 @@ export default function Home({ onOpenCallback }) {
         </div>
       </section>
 
-      {/* Centres for Excellence Section */}
-      <section className="section" style={{ backgroundColor: '#faf8fc', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container">
-          <div className="section-title-wrap" style={{ marginBottom: '48px' }}>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000', margin: 0 }}>Centres for Excellence</h2>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {branches.filter(branch => branch.city === 'Ropar').map((branch, idx) => (
-              <div key={idx} className="card branch-card-new" style={{ textAlign: 'center', maxWidth: '420px', width: '100%' }}>
-                <div className="branch-img-wrap">
-                  <img src={branch.image} alt={branch.city} className="branch-img" />
-                </div>
-                <div className="branch-content-wrap" style={{ alignItems: 'center', padding: '24px 20px 32px 20px' }}>
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: '750', color: '#000000', marginBottom: '16px', fontFamily: 'var(--font-title)' }}>{branch.city}</h3>
-                  <p style={{ fontSize: '0.95rem', color: '#594d66', lineHeight: '1.6', margin: 0 }}>{branch.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Associated Institutions */}
       <section style={styles.partnersSection}>
         <div className="container">
-          <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000', marginBottom: '48px', fontFamily: 'var(--font-title)', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000', marginBottom: '32px', fontFamily: 'var(--font-title)', textAlign: 'center' }}>
             Associated Educational Institutions
           </h2>
           <div className="partners-logo-grid">
@@ -1067,7 +974,7 @@ const styles = {
     backgroundColor: '#ffffff',
     borderTop: '1px solid rgba(103, 35, 154, 0.05)',
     borderBottom: '1px solid rgba(103, 35, 154, 0.05)',
-    padding: '64px 0',
+    padding: '48px 0',
     textAlign: 'center'
   },
   partnersTitle: {
