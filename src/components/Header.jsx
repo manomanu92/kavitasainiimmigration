@@ -135,10 +135,10 @@ export default function Header({ onOpenCallback }) {
         <div className="container" style={styles.navContainer}>
           {/* Logo */}
           <Link to="/" style={styles.logoWrap}>
-            <img 
-              src="/images/Group-1.png" 
-              alt="Hashtag Overseas Education" 
-              style={{ height: '68px', width: 'auto', objectFit: 'contain' }} 
+            <img
+              src="/images/kavita-saini-logo.jpeg"
+              alt="Kavita Saini Immigration"
+              style={{ height: 'auto', width: '200px', objectFit: 'contain' }}
             />
           </Link>
 
@@ -212,7 +212,6 @@ export default function Header({ onOpenCallback }) {
             </div>
 
             <NavLink to="/ventures" style={({ isActive }) => isActive ? { ...styles.navLink, ...styles.navLinkActive } : styles.navLink}>Ventures</NavLink>
-            <a href="/#blog" style={styles.navLink}>Blog</a>
             <NavLink to="/contact-us" style={({ isActive }) => isActive ? { ...styles.navLink, ...styles.navLinkActive } : styles.navLink}>Contact Us</NavLink>
           </nav>
 
@@ -350,7 +349,6 @@ export default function Header({ onOpenCallback }) {
               </div>
 
               <Link to="/ventures" style={styles.mobileLink}>Ventures</Link>
-              <a href="/#blog" style={styles.mobileLink} onClick={() => setIsOpen(false)}>Blog</a>
               <Link to="/contact-us" style={styles.mobileLink}>Contact Us</Link>
               
               <button 

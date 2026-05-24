@@ -311,7 +311,7 @@ export default function Home({ onOpenCallback }) {
       <section className="section section-bg-alt" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
         <div className="container" style={styles.introGrid}>
           <div style={styles.introLeft}>
-            <h2 style={styles.title}>One-Stop Overseas Education Consultant For All Your Study Needs</h2>
+            <h2 style={styles.title}>Your Trusted Partner for Canadian Immigration Success</h2>
             <p style={styles.desc}>
               Best overseas education consultant - Hashtag Overseas is recognized as one of the fastest-growing overseas education consultants in Chandigarh and Rupnagar in the international education space for students creating a strong repute for genuine educational opportunities and solutions.
             </p>
@@ -358,33 +358,6 @@ export default function Home({ onOpenCallback }) {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="section" style={{ backgroundColor: '#e6f4f8', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container">
-          <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000' }}>All Services</h2>
-          </div>
-          <div className="grid-3" style={styles.servicesGrid}>
-            {[
-              { title: "Visitor Visa", desc: "Hashtag Overseas: Your Trusted Partner for Visitor Visa", path: "/tourist-visa" },
-              { title: "Spouse Visa", desc: "Your Dream of Being Together: Spouse Visa the Best Consultants", path: "/spouse-visa" },
-              { title: "Spoken english", desc: "Enhance Your Language Skills - The Best Spoken English Institute", path: "/spoken-english" },
-              { title: "PR Visa", desc: "Achieve Your Dreams: The Best PR Visa Consultants for Permanent Residency", path: "/about" },
-              { title: "Study Visa", desc: "Unlock Your Future with Study Visa Consultants: The Key to Success", path: "/study-visa" },
-              { title: "IELTS", desc: "IELTS Preparation Excellence at Hashtag Overseas: Your Premier IELTS Institute", path: "/ielts" }
-            ].map((service, idx) => (
-              <div key={idx} className="card service-card-exact">
-                <h3 className="service-card-title-exact">{service.title}</h3>
-                <p className="service-card-desc-exact">{service.desc}</p>
-                <Link to={service.path} className="service-card-link-exact">
-                  Read More
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Pillars of Success Section */}
       <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="container">
@@ -402,37 +375,6 @@ export default function Home({ onOpenCallback }) {
                 <h2 className="stat-card-value-exact">{stat.value}</h2>
                 <p className="stat-card-label-exact">{stat.label}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section id="blog" className="section section-bg-alt" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="container">
-          <div className="section-title-wrap" style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#000000' }}>Blog</h2>
-          </div>
-          <div className="grid-3" style={{ marginBottom: '48px' }}>
-            {blogs.map((blog, idx) => (
-              <article key={idx} className="blog-card-exact">
-                <div className="blog-img-wrap-exact">
-                  <img src={blog.image} alt={blog.title} className="blog-img-exact" />
-                </div>
-                <div className="blog-content-wrap-exact">
-                  <div className="blog-meta-exact">
-                    <span className="blog-meta-item-exact">
-                      <Calendar size={14} style={{ marginRight: '4px' }} />
-                      {blog.date}
-                    </span>
-                    <span className="blog-meta-item-exact">
-                      <Users size={14} style={{ marginRight: '4px' }} />
-                      Blogs
-                    </span>
-                  </div>
-                  <h3 className="blog-title-exact">{blog.title}</h3>
-                </div>
-              </article>
             ))}
           </div>
         </div>

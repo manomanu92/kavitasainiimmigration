@@ -63,15 +63,14 @@ export default function Footer() {
       <div className="container" style={styles.footerTop}>
         <div style={styles.brandCol}>
           <div style={styles.logoWrap}>
-            <img 
-              src="/images/Group-1.png" 
-              alt="Hashtag Overseas Education" 
-              style={{ height: '48px', width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} 
+            <img
+              src="/images/kavita-saini-logo.jpeg"
+              alt="Kavita Saini Immigration"
+              style={{ height: '60px', width: 'auto', objectFit: 'contain', background: 'white', borderRadius: '6px', padding: '4px 8px' }}
             />
           </div>
           <p style={styles.brandText}>
-            #hashtag is one of the fastest growing consultants in the international education space for students creating a strong repute for genuine educational opportunities and solutions across countries like Canada, Australia, UK and USA.
-          </p>
+             Kavita Saini Immigration Inc. is a Canada-based immigration consulting firm operating in the Greater Toronto area (Mississauga, Ontario), led by Kavita Saini.          </p>
           <div style={styles.socials} className="social-icons">
             <a href="https://www.facebook.com/kavitasainiimmigration/" target="_blank" rel="noopener noreferrer" style={styles.socialLink} aria-label="Facebook">
               <Facebook size={18} />
@@ -90,7 +89,6 @@ export default function Footer() {
           <ul style={styles.linksList}>
             <li><Link to="/about" style={styles.link}>About</Link></li>
             <li><Link to="/study-visa" style={styles.link}>Services</Link></li>
-            <li><Link to="/#blog" style={styles.link}>Blog</Link></li>
             <li><Link to="/about" style={styles.link}>Faq</Link></li>
             <li><Link to="/contact-us" style={styles.link}>Contact Us</Link></li>
           </ul>
@@ -144,7 +142,7 @@ export default function Footer() {
       {/* Bottom copyright */}
       <div style={styles.footerBottom}>
         <div className="container" style={styles.footerBottomContent}>
-          <p>Copyright &copy; 2023 Redcode Technologies</p>
+          <p>Copyright &copy; 2026 Kavita Saini Immigration Inc.</p>
         </div>
       </div>
     </footer>
