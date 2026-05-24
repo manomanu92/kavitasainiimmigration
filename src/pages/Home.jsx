@@ -140,28 +140,10 @@ export default function Home({ onOpenCallback }) {
 
   const slides = [
     {
-      title: "Confirmed Admission",
-      desc: "Unlock access to 500+ top-tier universities and colleges across Canada, USA, UK, Australia, and New Zealand.",
-      image: "/images/Artboard-4.jpg",
-      accent: "Direct University Tie-Ups"
-    },
-    {
       title: "15 Years of Global Expertise",
       desc: "Trust your career with pioneers of study visa counseling and language instruction in North India.",
       image: "/images/Artboard-5.jpg",
       accent: "Highest Success Rate"
-    },
-    {
-      title: "Your Local Guardian in Canada",
-      desc: "We don't just send you abroad; our dedicated team in Canada provides complete post-landing settlement support.",
-      image: "/images/newww.jpg",
-      accent: "Exclusive Post-Landing Support"
-    },
-    {
-      title: "Complete Transparency Process",
-      desc: "Experience a fully ethical visa process with zero hidden fees and direct file submission monitoring.",
-      image: "/images/16-2.jpg",
-      accent: "100% Ethical Counseling"
     },
     {
       title: "Services in Canada",
