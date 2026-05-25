@@ -220,7 +220,7 @@ export default function About() {
       {/* ── 1. Banner ── */}
       <div style={{ width: '100%', backgroundColor: '#f7f5fa' }}>
         <img
-          src={imgUrl('/images/about-hero.png')}
+          src={imgUrl('/images/WhatsApp-Image-2026-05-25-at-11.48.30.jpeg')}
           alt="Kavita Saini Immigration — About Us"
           className="about-hero-img"
         />
