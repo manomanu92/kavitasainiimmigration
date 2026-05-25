@@ -61,7 +61,6 @@ export default function Header({ onOpenCallback }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [mobileServicesSub, setMobileServicesSub] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -80,7 +79,6 @@ export default function Header({ onOpenCallback }) {
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
-    setMobileServicesSub(null);
   }, [location]);
 
   const toggleDropdown = (index) => {
@@ -148,58 +146,7 @@ export default function Header({ onOpenCallback }) {
             <NavLink to="/" style={({ isActive }) => isActive ? { ...styles.navLink, ...styles.navLinkActive } : styles.navLink}>Home</NavLink>
             <NavLink to="/about" style={({ isActive }) => isActive ? { ...styles.navLink, ...styles.navLinkActive } : styles.navLink}>About Us</NavLink>
             
-            {/* Services Dropdown */}
-            <div style={styles.navDropdownItem}>
-              <button style={styles.navLinkBtn}>
-                Services <ChevronDown size={14} style={styles.chevron} />
-              </button>
-              <div style={styles.dropdownMenu}>
-                {/* Language (Sub-menu) */}
-                <div style={styles.dropdownItemContainer} className="dropdown-item-container">
-                  <span style={styles.dropdownLink} className="dropdown-link-item">
-                    Language
-                  </span>
-                  <div style={styles.subMenu} className="sub-menu">
-                    <Link to="/ielts" style={styles.subDropdownLink}>IELTS</Link>
-                    <Link to="/spoken-english" style={styles.subDropdownLink}>Spoken English</Link>
-                  </div>
-                </div>
-
-                {/* Study Visa (Sub-menu) */}
-                <div style={styles.dropdownItemContainer} className="dropdown-item-container">
-                  <Link to="/study-visa" style={styles.dropdownLink} className="dropdown-link-item">
-                    Study Visa
-                  </Link>
-                  <div style={styles.subMenu} className="sub-menu">
-                    <Link to="/study-visa/canada" style={styles.subDropdownLink}>Canada Study Visa</Link>
-                    <Link to="/study-visa/usa" style={styles.subDropdownLink}>USA Study Visa</Link>
-                    <Link to="/study-visa/uk" style={styles.subDropdownLink}>UK Study Visa</Link>
-                    <Link to="/study-visa/australia" style={styles.subDropdownLink}>Australia Study Visa</Link>
-                    <Link to="/study-visa/new-zealand" style={styles.subDropdownLink}>New Zealand Study Visa</Link>
-                  </div>
-                </div>
-
-                {/* Tourist Visa (Sub-menu) */}
-                <div style={styles.dropdownItemContainer} className="dropdown-item-container">
-                  <Link to="/tourist-visa" style={styles.dropdownLink} className="dropdown-link-item">
-                    Tourist Visa
-                  </Link>
-                  <div style={styles.subMenu} className="sub-menu">
-                    <Link to="/tourist-visa/uk" style={styles.subDropdownLink}>UK Tourist Visa</Link>
-                    <Link to="/tourist-visa/australia" style={styles.subDropdownLink}>Australia Tourist Visa</Link>
-                    <Link to="/tourist-visa/usa" style={styles.subDropdownLink}>USA Tourist Visa</Link>
-                    <Link to="/tourist-visa/canada" style={styles.subDropdownLink}>Canada Tourist Visa</Link>
-                  </div>
-                </div>
-
-                {/* Spouse Visa (Direct link) */}
-                <div style={styles.dropdownItemContainer} className="dropdown-item-container">
-                  <Link to="/spouse-visa" style={styles.dropdownLink} className="dropdown-link-item">
-                    Spouse Visa
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <NavLink to="/services" style={({ isActive }) => isActive ? { ...styles.navLink, ...styles.navLinkActive } : styles.navLink}>Services</NavLink>
 
             <NavLink to="/ventures" style={({ isActive }) => isActive ? { ...styles.navLink, ...styles.navLinkActive } : styles.navLink}>Ventures</NavLink>
             <NavLink to="/contact-us" style={({ isActive }) => isActive ? { ...styles.navLink, ...styles.navLinkActive } : styles.navLink}>Contact Us</NavLink>
@@ -210,19 +157,6 @@ export default function Header({ onOpenCallback }) {
             <button onClick={onOpenCallback} className="btn btn-primary" style={styles.ctaBtn}>
               ARRANGE A CALL BACK
             </button>
-            <a 
-              href="https://www.icef.com/agency/0010J0000203FPuQAM" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center' }}
-            >
-              <img 
-                src={imgUrl("/images/a3f4057ea4700428c68e982053d61e0fa105e8b758fa700b7bac47e31fac957a-qoat7s92awoujz19jrgu24noor8s3fvujaf6wmwwxs.png")} 
-                alt="ICEF Trained Agent Badge" 
-                className="icef-badge-img"
-                style={{ height: '65px', width: 'auto', transition: 'transform 0.2s' }}
-              />
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -238,86 +172,7 @@ export default function Header({ onOpenCallback }) {
               <Link to="/" style={styles.mobileLink}>Home</Link>
               <Link to="/about" style={styles.mobileLink}>About Us</Link>
               
-              {/* Mobile Accordion: Services */}
-              <div style={styles.mobileAccordion}>
-                <button onClick={() => toggleDropdown(1)} style={styles.mobileAccordionBtn}>
-                  Services <ChevronDown size={16} style={{
-                    transform: activeDropdown === 1 ? 'rotate(180deg)' : 'none',
-                    transition: '0.2s'
-                  }} />
-                </button>
-                {activeDropdown === 1 && (
-                  <div style={styles.mobileSubLinks}>
-                    
-                    {/* Mobile Sub-Accordion: Language */}
-                    <div style={styles.mobileAccordion}>
-                      <button 
-                        onClick={() => setMobileServicesSub(mobileServicesSub === 'language' ? null : 'language')}
-                        style={styles.mobileSubAccordionBtn}
-                      >
-                        Language <ChevronDown size={14} style={{
-                          transform: mobileServicesSub === 'language' ? 'rotate(180deg)' : 'none',
-                          transition: '0.2s'
-                        }} />
-                      </button>
-                      {mobileServicesSub === 'language' && (
-                        <div style={styles.mobileSubSubLinks}>
-                          <Link to="/ielts" style={styles.mobileSubLink}>IELTS</Link>
-                          <Link to="/spoken-english" style={styles.mobileSubLink}>Spoken English</Link>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Mobile Sub-Accordion: Study Visa */}
-                    <div style={styles.mobileAccordion}>
-                      <button 
-                        onClick={() => setMobileServicesSub(mobileServicesSub === 'study' ? null : 'study')}
-                        style={styles.mobileSubAccordionBtn}
-                      >
-                        Study Visa <ChevronDown size={14} style={{
-                          transform: mobileServicesSub === 'study' ? 'rotate(180deg)' : 'none',
-                          transition: '0.2s'
-                        }} />
-                      </button>
-                      {mobileServicesSub === 'study' && (
-                        <div style={styles.mobileSubSubLinks}>
-                          <Link to="/study-visa" style={styles.mobileSubLink}>All Study Visas</Link>
-                          <Link to="/study-visa/canada" style={styles.mobileSubLink}>Canada Study Visa</Link>
-                          <Link to="/study-visa/usa" style={styles.mobileSubLink}>USA Study Visa</Link>
-                          <Link to="/study-visa/uk" style={styles.mobileSubLink}>UK Study Visa</Link>
-                          <Link to="/study-visa/australia" style={styles.mobileSubLink}>Australia Study Visa</Link>
-                          <Link to="/study-visa/new-zealand" style={styles.mobileSubLink}>New Zealand Study Visa</Link>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Mobile Sub-Accordion: Tourist Visa */}
-                    <div style={styles.mobileAccordion}>
-                      <button 
-                        onClick={() => setMobileServicesSub(mobileServicesSub === 'tourist' ? null : 'tourist')}
-                        style={styles.mobileSubAccordionBtn}
-                      >
-                        Tourist Visa <ChevronDown size={14} style={{
-                          transform: mobileServicesSub === 'tourist' ? 'rotate(180deg)' : 'none',
-                          transition: '0.2s'
-                        }} />
-                      </button>
-                      {mobileServicesSub === 'tourist' && (
-                        <div style={styles.mobileSubSubLinks}>
-                          <Link to="/tourist-visa" style={styles.mobileSubLink}>All Tourist Visas</Link>
-                          <Link to="/tourist-visa/uk" style={styles.mobileSubLink}>UK Tourist Visa</Link>
-                          <Link to="/tourist-visa/australia" style={styles.mobileSubLink}>Australia Tourist Visa</Link>
-                          <Link to="/tourist-visa/usa" style={styles.mobileSubLink}>USA Tourist Visa</Link>
-                          <Link to="/tourist-visa/canada" style={styles.mobileSubLink}>Canada Tourist Visa</Link>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Spouse Visa (Direct Link) */}
-                    <Link to="/spouse-visa" style={styles.mobileSubLinkDirect}>Spouse Visa</Link>
-                  </div>
-                )}
-              </div>
+              <Link to="/services" style={styles.mobileLink} onClick={() => setIsOpen(false)}>Services</Link>
 
               <Link to="/ventures" style={styles.mobileLink}>Ventures</Link>
               <Link to="/contact-us" style={styles.mobileLink}>Contact Us</Link>

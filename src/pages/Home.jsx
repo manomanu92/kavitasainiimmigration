@@ -10,7 +10,7 @@ export default function Home({ onOpenCallback }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [reviewIndex, setReviewIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
 
   // Count-up animation for Pillars of Success
   const pillarsRef = useRef(null);
@@ -308,42 +308,6 @@ export default function Home({ onOpenCallback }) {
             <Link to="/about" className="btn btn-primary" style={{ marginTop: '32px', backgroundColor: 'var(--primary)', borderColor: 'var(--primary)', padding: '12px 30px' }}>
               LEARN MORE
             </Link>
-          </div>
-          <div style={styles.introRightVideo}>
-            <div style={styles.videoLinkWrapper}>
-              {isVideoPlaying ? (
-                <div style={{ ...styles.videoThumbnailContainer, paddingBottom: '56.25%', position: 'relative' }}>
-                  <iframe 
-                    src="https://www.youtube.com/embed/O4GnLaRL_ek?autoplay=1" 
-                    title="YouTube video player" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowFullScreen 
-                    style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, borderRadius: '8px' }}
-                  ></iframe>
-                </div>
-              ) : (
-                <div style={styles.videoThumbnailContainer} onClick={() => setIsVideoPlaying(true)}>
-                  <img 
-                    src={imgUrl("/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg")} 
-                    alt="YouTube Video Thumbnail" 
-                    style={styles.introVideoThumbnail} 
-                  />
-                  <div style={styles.youtubePlayOverlay}>
-                    <svg viewBox="0 0 68 48" width="68" height="48">
-                      <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.06 0 24 0 24s.06 10.94 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.94 68 24 68 24s-.06-10.94-1.48-16.26z" fill="#f00" />
-                      <polygon points="27.41 33 45.41 24 27.41 15" fill="#fff" />
-                    </svg>
-                  </div>
-                  <div style={styles.watchOnYoutubeWatermark}>
-                    <span>Watch on</span>
-                    <svg viewBox="0 0 60 16" width="60" height="16">
-                      <path d="M10 2v12h2v-12h-2zm4.5 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5h1v6h2V2h-3zm0 2h1v2h-1V4zm8.5-2v10c0 .8-.7 1.5-1.5 1.5h-1c-.8 0-1.5-.7-1.5-1.5V2h2v8h1V2h1zm3-2v2h2v12h2V2h2V0h-6zm10 2c-.8 0-1.5.7-1.5 1.5v9c0 .8.7 1.5 1.5 1.5h1c.8 0 1.5-.7 1.5-1.5v-9c0-.8-.7-1.5-1.5-1.5h-1zm0 2h1v7h-1V4z" fill="#fff" />
-                    </svg>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </section>
@@ -721,14 +685,9 @@ const styles = {
     transition: 'var(--transition-smooth)'
   },
   introGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1.1fr 0.9fr',
-    gap: '56px',
-    alignItems: 'center',
-    '@media (max-width: 1024px)': {
-      gridTemplateColumns: '1fr',
-      gap: '40px'
-    }
+    display: 'block',
+    maxWidth: '800px',
+    margin: '0 auto'
   },
   introLeft: {
     display: 'flex',
@@ -1103,71 +1062,10 @@ const styles = {
     lineHeight: '1.3',
     fontFamily: 'var(--font-title)'
   },
-  introRightVideo: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%'
-  },
-  videoLinkWrapper: {
-    display: 'block',
-    width: '100%',
-    maxWidth: '560px',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-  },
-  videoThumbnailContainer: {
-    position: 'relative',
-    width: '100%',
-    paddingBottom: '56.25%', // 16:9 ratio
-    backgroundColor: '#000000',
-    cursor: 'pointer'
-  },
-  introVideoThumbnail: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover'
-  },
-  youtubePlayOverlay: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: 2,
-    transition: 'transform 0.2s',
-  },
-  watchOnYoutubeWatermark: {
-    position: 'absolute',
-    bottom: '12px',
-    left: '12px',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    color: '#ffffff',
-    padding: '4px 10px',
-    borderRadius: '4px',
-    fontSize: '0.85rem',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    zIndex: 2
-  }
 };
 
 const homeStyles = `
-  @media (max-width: 1024px) {
-    .intro-section-grid {
-      grid-template-columns: 1fr !important;
-      gap: 40px !important;
-    }
-  }
   @media (max-width: 768px) {
-    .intro-section-grid {
-      gap: 28px !important;
-    }
-
     /* Fix: USP cards no longer cover hero on mobile */
     .usp-overlap-container {
       margin-top: 0 !important;

@@ -221,8 +221,8 @@ export default function About() {
       {/* ── 1. Banner ── */}
       <div style={{ width: '100%', overflow: 'hidden', backgroundColor: '#f7f5fa' }}>
         <img
-          src={imgUrl('/images/Artboard-7.jpg')}
-          alt="Kavita Saini Immigration — success stories collage"
+          src={imgUrl('/images/about-hero.png')}
+          alt="Kavita Saini Immigration — About Us"
           style={{ width: '100%', height: 'auto', display: 'block' }}
         />
       </div>

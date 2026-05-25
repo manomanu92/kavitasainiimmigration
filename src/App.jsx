@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import GenericPage from './pages/GenericPage';
 import About from './pages/About';
+import Services from './pages/Services';
 
 // Scroll to top on navigation route changes
 function ScrollToTop() {
@@ -59,6 +60,7 @@ export default function App() {
             
             {/* Core Pages */}
             <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/ielts" element={<GenericPage pageKey="ielts" />} />
             <Route path="/spoken-english" element={<GenericPage pageKey="spoken_english" />} />
             <Route path="/career-counselling" element={<GenericPage pageKey="career_counselling" />} />
