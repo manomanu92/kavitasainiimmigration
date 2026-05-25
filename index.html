@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // GitHub Pages SPA fix — restore the path from the ?p= query param
+      (function() {
+        var p = window.location.search.match(/\?p=(.*)/);
+        if (p && p[1]) {
+          window.history.replaceState(null, null, decodeURIComponent(p[1]));
+        }
+      })();
+    </script>
+    <link rel="icon" type="image/jpeg" href="/images/kavita-saini-logo.jpeg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kavita Saini Immigration Inc.</title>
+    <meta name="description" content="Kavita Saini Immigration Inc. is a Canada-based immigration consulting firm operating in the Greater Toronto area (Mississauga, Ontario), led by Kavita Saini." />
+    <meta name="keywords" content="Kavita Saini Immigration Inc. is a Canada-based immigration consulting firm operating in the Greater Toronto area (Mississauga, Ontario), led by Kavita Saini." />
+    <meta name="author" content="Kavita Saini Immigration" />
+
+    <!-- Open Graph — WhatsApp, Facebook, LinkedIn previews -->
+    <meta property="og:title" content="Kavita Saini Immigration Inc." />
+    <meta property="og:description" content="Kavita Saini Immigration Inc. is a Canada-based immigration consulting firm operating in the Greater Toronto area (Mississauga, Ontario), led by Kavita Saini." />
+    <meta property="og:image" content="https://kavitasainiimmigration.com/images/kavita-saini-slide.png" />
+    <meta property="og:image:width" content="2068" />
+    <meta property="og:image:height" content="760" />
+    <meta property="og:url" content="https://kavitasainiimmigration.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kavita Saini Immigration" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kavita Saini Immigration Inc." />
+    <meta name="twitter:description" content="Kavita Saini Immigration Inc. is a Canada-based immigration consulting firm operating in the Greater Toronto area (Mississauga, Ontario), led by Kavita Saini." />
+    <meta name="twitter:image" content="https://kavitasainiimmigration.com/images/kavita-saini-slide.png" />
+    <script type="module" crossorigin src="/assets/index-lrAKlfwa.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-UNMh-NBG.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+
