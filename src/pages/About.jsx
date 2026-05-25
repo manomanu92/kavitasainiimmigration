@@ -216,7 +216,7 @@ export default function About() {
         <img
           src={imgUrl('/images/about-hero.png')}
           alt="Kavita Saini Immigration — About Us"
-          style={{ width: '100%', height: 'clamp(220px, 35vw, 340px)', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+          style={{ width: '100%', height: '340px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
         />
       </div>
 
