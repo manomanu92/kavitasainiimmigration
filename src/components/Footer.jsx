@@ -90,41 +90,28 @@ export default function Footer() {
           <ul style={styles.linksList}>
             <li><Link to="/about" style={styles.link}>About</Link></li>
             <li><Link to="/study-visa" style={styles.link}>Services</Link></li>
-            <li><Link to="/about" style={styles.link}>Faq</Link></li>
             <li><Link to="/contact-us" style={styles.link}>Contact Us</Link></li>
-          </ul>
-        </div>
-
-        <div style={styles.linksCol}>
-          <h4 style={styles.colTitle}>Our Services</h4>
-          <ul style={styles.linksList}>
-            <li><Link to="/ielts" style={styles.link}>IELTS</Link></li>
-            <li><Link to="/spoken-english" style={styles.link}>Spoken english</Link></li>
-            <li><Link to="/spouse-visa" style={styles.link}>Spouse Visa</Link></li>
-            <li><Link to="/study-visa" style={styles.link}>Study Visa</Link></li>
-            <li><Link to="/tourist-visa" style={styles.link}>Tourist Visa</Link></li>
           </ul>
         </div>
 
         <div style={styles.contactCol}>
           <h4 style={styles.colTitle}>Contact Us</h4>
           <div style={styles.contactItems}>
-            <p style={styles.contactText}>SCF 10, GIANI ZAIL SINGH NAGAR, ROPAR, Punjab</p>
-            <p style={styles.contactText}>Mississauga, Toronto</p>
-            <p style={{ ...styles.contactText, marginTop: '8px' }}>+1 (437) 232 3647</p>
+            {/* Canada address */}
+            <div>
+              <p style={styles.contactLabel}>🇨🇦 Kavita Saini Immigration (Canada)</p>
+              <p style={styles.contactText}>Mississauga, Ontario, Toronto</p>
+              <p style={styles.contactText}>+1 (437) 232 3647</p>
+            </div>
+            {/* India address */}
+            <div>
+              <p style={styles.contactLabel}>🇮🇳 Hashtag Overseas Education (India)</p>
+              <p style={{ ...styles.contactText, fontSize: '0.75rem', color: 'rgba(226,162,40,0.8)', fontStyle: 'italic', marginBottom: '3px' }}>Our India affiliate of Kavita Saini Immigration</p>
+              <p style={styles.contactText}>SCF 10, Giani Zail Singh Nagar, Ropar, Punjab</p>
+              <p style={styles.contactText}>+91 98162 21774</p>
+            </div>
           </div>
 
-          {/* Email Subscription Box */}
-          <div style={styles.subscribeBox}>
-            <input 
-              type="email" 
-              placeholder="ENTER YOUR EMAIL" 
-              style={styles.subscribeInput} 
-            />
-            <button style={styles.subscribeBtn} aria-label="Subscribe">
-              <Send size={16} />
-            </button>
-          </div>
         </div>
       </div>
 
@@ -161,7 +148,7 @@ const styles = {
   },
   footerTop: {
     display: 'grid',
-    gridTemplateColumns: '1.2fr 0.8fr 0.8fr 1.5fr',
+    gridTemplateColumns: '1.2fr 0.8fr 1.5fr',
     gap: '40px',
     paddingBottom: '56px',
   },
@@ -226,6 +213,14 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '16px'
+  },
+  contactLabel: {
+    fontSize: '0.78rem',
+    fontWeight: '700',
+    color: '#e2a228',
+    letterSpacing: '0.04em',
+    marginBottom: '3px',
+    marginTop: 0,
   },
   contactText: {
     fontSize: '0.85rem',

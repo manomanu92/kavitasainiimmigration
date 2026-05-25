@@ -7,19 +7,8 @@ import imgUrl from '../utils/imgUrl';
 const aboutCSS = `
   .about-hero-img {
     width: 100%;
-    height: 420px;
-    object-fit: cover;
-    object-position: center top;
+    height: auto;
     display: block;
-  }
-  @media (max-width: 1024px) {
-    .about-hero-img { height: 340px; }
-  }
-  @media (max-width: 768px) {
-    .about-hero-img { height: 260px; }
-  }
-  @media (max-width: 480px) {
-    .about-hero-img { height: 200px; }
   }
 
   .about-intro-grid {
@@ -229,7 +218,7 @@ export default function About() {
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
 
       {/* ── 1. Banner ── */}
-      <div style={{ width: '100%', overflow: 'hidden', backgroundColor: '#f7f5fa' }}>
+      <div style={{ width: '100%', backgroundColor: '#f7f5fa' }}>
         <img
           src={imgUrl('/images/about-hero.png')}
           alt="Kavita Saini Immigration — About Us"

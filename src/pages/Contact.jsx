@@ -133,23 +133,25 @@ export default function Contact() {
         <div className="container">
           <div style={styles.officesGrid}>
 
-            {/* Ropar */}
-            <div style={styles.officeItem}>
-              <p style={styles.officeText}>
-                SCF 10, GIANI ZAIL SINGH NAGAR, ROPAR, Punjab
-              </p>
+            {/* Canada */}
+            <div style={styles.officeCard}>
+              <p style={styles.officeFlag}>🇨🇦</p>
+              <h4 style={styles.officeTitle}>Kavita Saini Immigration</h4>
+              <p style={styles.officeCountry}>Canada</p>
+              <p style={styles.officeText}>Mississauga, Ontario, Toronto</p>
               <div style={styles.officeContact}>
-                <a href="tel:+919816221774" style={styles.contactLink}>+91 98162 21774</a>
+                <a href="tel:+14372323647" style={styles.contactLink}>+1 (437) 232 3647</a>
               </div>
             </div>
 
-            {/* Mississauga */}
-            <div style={styles.officeItem}>
-              <p style={styles.officeText}>
-                Mississauga, Toronto
-              </p>
+            {/* India */}
+            <div style={styles.officeCard}>
+              <p style={styles.officeFlag}>🇮🇳</p>
+              <h4 style={styles.officeTitle}>Hashtag Overseas Education</h4>
+              <p style={styles.officeAffiliate}>Our India affiliate of Kavita Saini Immigration</p>
+              <p style={styles.officeText}>SCF 10, Giani Zail Singh Nagar, Ropar, Punjab</p>
               <div style={styles.officeContact}>
-                <a href="tel:+14372323647" style={styles.contactLink}>+1 (437) 232 3647</a>
+                <a href="tel:+919816221774" style={styles.contactLink}>+91 98162 21774</a>
               </div>
             </div>
 
@@ -263,17 +265,49 @@ const styles = {
   },
   officesGrid: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
+    gridTemplateColumns: '1fr 1fr',
     gap: '32px',
-    marginBottom: '40px'
+    maxWidth: '720px',
+    margin: '0 auto 40px'
   },
-  officeItem: {
-    textAlign: 'center'
+  officeCard: {
+    textAlign: 'center',
+    background: '#ffffff',
+    borderRadius: '16px',
+    padding: '36px 28px',
+    boxShadow: '0 4px 24px rgba(103,35,154,0.08)',
+    border: '1px solid rgba(103,35,154,0.08)'
+  },
+  officeFlag: {
+    fontSize: '2.2rem',
+    marginBottom: '10px',
+    lineHeight: 1
+  },
+  officeTitle: {
+    fontSize: '1.05rem',
+    fontWeight: '700',
+    color: 'var(--primary-dark)',
+    fontFamily: 'var(--font-title)',
+    marginBottom: '4px'
+  },
+  officeCountry: {
+    fontSize: '0.78rem',
+    fontWeight: '600',
+    color: 'var(--primary)',
+    letterSpacing: '0.06em',
+    textTransform: 'uppercase',
+    marginBottom: '12px'
+  },
+  officeAffiliate: {
+    fontSize: '0.78rem',
+    color: '#e2a228',
+    fontStyle: 'italic',
+    marginBottom: '10px'
   },
   officeText: {
-    fontSize: '0.95rem',
-    color: '#444444',
-    lineHeight: '1.7',
+    fontSize: '0.92rem',
+    color: '#555555',
+    lineHeight: '1.6',
     marginBottom: '12px'
   },
   officeContact: {
@@ -285,7 +319,8 @@ const styles = {
   contactLink: {
     display: 'block',
     fontSize: '0.95rem',
-    color: '#333333',
+    color: 'var(--primary)',
+    fontWeight: '600',
     textDecoration: 'none',
     lineHeight: '1.8'
   },
