@@ -113,14 +113,15 @@ export default function Services() {
   return (
     <>
       {/* Page Banner */}
-      <section style={{
-        ...styles.banner,
-        backgroundImage: `linear-gradient(135deg, rgba(103,35,154,0.45) 0%, rgba(74,24,112,0.40) 100%), url(${imgUrl('/images/services-in-Canada.jpg')})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}>
-        <div className="container" style={styles.bannerContent}>
+      <section style={styles.banner}>
+        <div style={styles.bannerImgWrap}>
+          <img
+            src={imgUrl('/images/services-in-Canada.jpg')}
+            alt="Services in Canada"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          />
+        </div>
+        <div style={styles.bannerOverlay}>
           <h1 style={styles.bannerTitle}>Our Services</h1>
         </div>
       </section>
@@ -231,8 +232,25 @@ export default function Services() {
 
 const styles = {
   banner: {
-    padding: '100px 0 80px',
+    position: 'relative',
+    width: '100%',
+    background: 'linear-gradient(135deg, #67239a 0%, #4a1870 100%)',
     color: '#ffffff',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bannerImgWrap: {
+    width: '75%',
+    maxWidth: '960px',
+  },
+  bannerOverlay: {
+    position: 'absolute',
+    inset: 0,
+    background: 'rgba(103,35,154,0.35)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bannerContent: {
     textAlign: 'center',

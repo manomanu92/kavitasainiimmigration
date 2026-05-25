@@ -60,13 +60,7 @@ const aboutCSS = `
     justify-content: center;
     margin: 0 auto 20px;
   }
-  .about-video-thumbnail:hover .yt-play-btn {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-  .yt-play-btn {
-    transition: transform 0.2s ease;
-  }
-  .cta-btn-primary {
+.cta-btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -184,7 +178,6 @@ const pillarsStats = [
 const values = ['Transparency', 'Integrity', 'Accuracy', 'Client First', 'Confidentiality'];
 
 export default function About() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   /* Count-up animation */
   const pillarsRef = useRef(null);
@@ -223,85 +216,37 @@ export default function About() {
         <img
           src={imgUrl('/images/about-hero.png')}
           alt="Kavita Saini Immigration — About Us"
-          style={{ width: '100%', height: 'auto', display: 'block' }}
+          style={{ width: '100%', height: 'clamp(220px, 35vw, 340px)', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
         />
       </div>
 
-      {/* ── 2. Our Story + Video ── */}
+      {/* ── 2. Our Story ── */}
       <section className="section" style={{ backgroundColor: '#ffffff', paddingTop: '80px', paddingBottom: '64px' }}>
-        <div className="container">
-          <div className="about-intro-grid">
+        <div className="container" style={{ maxWidth: '820px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(103,35,154,0.08)', color: 'var(--primary)', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '50px', marginBottom: '20px' }}>
+            Our Story
+          </div>
+          <h2 style={{ fontSize: '2.25rem', fontWeight: '800', color: 'var(--primary-dark)', marginBottom: '20px', lineHeight: '1.25', fontFamily: 'var(--font-title)' }}>
+            Making Canadian Immigration Clear, Structured &amp; Successful
+          </h2>
+          <p style={S.desc}>
+            At Kavita Saini Immigration Inc., we believe immigration is not just a process — it is a life-changing journey that shapes your future, your career, and your family's opportunities. Our role is to make that journey clear, structured, and successful.
+          </p>
+          <p style={{ ...S.desc, marginTop: '16px' }}>
+            We are a professional immigration consultancy dedicated to helping individuals, families, students, and skilled professionals navigate the complexities of Canadian immigration with confidence and clarity.
+          </p>
+          <p style={{ ...S.desc, marginTop: '16px' }}>
+            With a strong commitment to ethical practice, transparency, and client success, we guide you at every step — from initial eligibility assessment to final visa approval and settlement support.
+          </p>
 
-            {/* Left — text */}
-            <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(103,35,154,0.08)', color: 'var(--primary)', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 16px', borderRadius: '50px', marginBottom: '20px' }}>
-                Our Story
-              </div>
-              <h2 style={{ fontSize: '2.25rem', fontWeight: '800', color: 'var(--primary-dark)', marginBottom: '20px', lineHeight: '1.25', fontFamily: 'var(--font-title)' }}>
-                Making Canadian Immigration Clear, Structured &amp; Successful
-              </h2>
-              <p style={S.desc}>
-                At Kavita Saini Immigration Inc., we believe immigration is not just a process — it is a life-changing journey that shapes your future, your career, and your family's opportunities. Our role is to make that journey clear, structured, and successful.
-              </p>
-              <p style={{ ...S.desc, marginTop: '16px' }}>
-                We are a professional immigration consultancy dedicated to helping individuals, families, students, and skilled professionals navigate the complexities of Canadian immigration with confidence and clarity.
-              </p>
-              <p style={{ ...S.desc, marginTop: '16px' }}>
-                With a strong commitment to ethical practice, transparency, and client success, we guide you at every step — from initial eligibility assessment to final visa approval and settlement support.
-              </p>
-
-              {/* Core values pills */}
-              <div style={{ marginTop: '28px', display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                {values.map(v => (
-                  <span key={v} className="value-pill">
-                    <CheckCircle size={13} color="var(--primary)" />
-                    {v}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Right — video */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-              <div style={{ width: '100%', maxWidth: '560px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 16px 48px rgba(103,35,154,0.14)' }}>
-                {isVideoPlaying ? (
-                  <div style={{ position: 'relative', paddingBottom: '56.25%' }}>
-                    <iframe
-                      src="https://www.youtube.com/embed/O4GnLaRL_ek?autoplay=1"
-                      title="Kavita Saini Immigration — About Us"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="about-video-thumbnail"
-                    onClick={() => setIsVideoPlaying(true)}
-                    style={{ position: 'relative', paddingBottom: '56.25%', backgroundColor: '#000', cursor: 'pointer' }}
-                  >
-                    <img
-                      src={imgUrl('/images/WhatsApp-Image-2024-01-09-at-8.54.12-PM.jpeg')}
-                      alt="Watch our story on YouTube"
-                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}
-                    />
-                    {/* Play button */}
-                    <div className="yt-play-btn" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 2 }}>
-                      <svg viewBox="0 0 68 48" width="72" height="52">
-                        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.06 0 24 0 24s.06 10.94 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.94 68 24 68 24s-.06-10.94-1.48-16.26z" fill="#f00" />
-                        <polygon points="27.41 33 45.41 24 27.41 15" fill="#fff" />
-                      </svg>
-                    </div>
-                    {/* Label */}
-                    <div style={{ position: 'absolute', bottom: '14px', left: '14px', background: 'rgba(0,0,0,0.68)', color: '#fff', padding: '5px 12px', borderRadius: '6px', fontSize: '0.82rem', fontWeight: '600', zIndex: 2 }}>
-                      ▶ Watch Our Story
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
+          {/* Core values pills */}
+          <div style={{ marginTop: '28px', display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+            {values.map(v => (
+              <span key={v} className="value-pill">
+                <CheckCircle size={13} color="var(--primary)" />
+                {v}
+              </span>
+            ))}
           </div>
         </div>
       </section>
