@@ -61,28 +61,6 @@ export default function App() {
             {/* Core Pages */}
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/ielts" element={<GenericPage pageKey="ielts" />} />
-            <Route path="/spoken-english" element={<GenericPage pageKey="spoken_english" />} />
-            <Route path="/career-counselling" element={<GenericPage pageKey="career_counselling" />} />
-            <Route path="/corporate-soft-skills" element={<GenericPage pageKey="corporate_soft_skills" />} />
-            
-            {/* Study Visas */}
-            <Route path="/study-visa" element={<GenericPage pageKey="study_visa" />} />
-            <Route path="/study-visa/canada" element={<GenericPage pageKey="canada_study_visa" />} />
-            <Route path="/study-visa/usa" element={<GenericPage pageKey="usa_study_visa" />} />
-            <Route path="/study-visa/uk" element={<GenericPage pageKey="uk_study_visa" />} />
-            <Route path="/study-visa/australia" element={<GenericPage pageKey="australia_study_visa" />} />
-            <Route path="/study-visa/new-zealand" element={<GenericPage pageKey="new_zealand_study_visa" />} />
-            
-            {/* Tourist Visas */}
-            <Route path="/tourist-visa" element={<GenericPage pageKey="tourist_visa" />} />
-            <Route path="/tourist-visa/canada" element={<GenericPage pageKey="canada_tourist_visa" />} />
-            <Route path="/tourist-visa/usa" element={<GenericPage pageKey="usa_tourist_visa" />} />
-            <Route path="/tourist-visa/uk" element={<GenericPage pageKey="uk_tourist_visa" />} />
-            <Route path="/tourist-visa/australia" element={<GenericPage pageKey="australia_tourist_visa" />} />
-            
-            {/* Spouse & Ventures */}
-            <Route path="/spouse-visa" element={<GenericPage pageKey="spouse_visa" />} />
             <Route path="/ventures" element={<GenericPage pageKey="ventures" />} />
           </Routes>
         </div>
